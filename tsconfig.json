@@ -1,0 +1,11 @@
+{
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"declarationDir": "types",
+		"outDir": "lib",
+		"module": "commonjs",
+		"target": "ES6",
+		"noImplicitAny": true,
+		"declaration": true
+	}
+}

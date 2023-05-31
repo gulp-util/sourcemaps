@@ -1,0 +1,57 @@
+{
+	"name": "sourcemaps",
+	"version": "0.0.1",
+	"license": "",
+	"title": "",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/gulp-utils/sourcemaps"
+	},
+	"bugs": {
+		"url": "https://github.com/gulp-utils/sourcemaps/issues"
+	},
+	"typings": "types/index.d.ts",
+	"main": "lib/index.js",
+	"contributors": [
+		"Florian Reiterer <me@florianreiterer.com>",
+		"PWall <git@pwall.me>"
+	],
+	"dependencies": {
+		"@gulp-sourcemaps/identity-map": "^2.0.1",
+		"@gulp-sourcemaps/map-sources": "^1.0.0",
+		"acorn": "^6.4.1",
+		"convert-source-map": "^1.0.0",
+		"css": "^3.0.0",
+		"debug-fabulous": "^1.0.0",
+		"detect-newline": "^2.0.0",
+		"graceful-fs": "^4.0.0",
+		"source-map": "^0.6.0",
+		"strip-bom-string": "^1.0.0",
+		"through2": "^2.0.0"
+	},
+	"devDependencies": {
+		"@types/node": "^20.2.5",
+		"@typescript-eslint/eslint-plugin": "^5.59.8",
+		"@typescript-eslint/parser": "^5.59.8",
+		"mocha": "^10.2.0",
+		"expect": "^29.5.0",
+		"eslint": "^8.41.0",
+		"typescript": "^5.0.4"
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"dev": "tsc --watch",
+		"build": "tsc",
+		"pretest": "pnpm run build",
+		"test": "mocha"
+	},
+	"files": [
+		"lib",
+		"types",
+		"LICENSE"
+	],
+	"keywords": [
+		"gulp"
+	],
+	"packageManager": "pnpm@7.13.5"
+}
