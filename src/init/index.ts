@@ -1,18 +1,18 @@
 "use strict";
-var utils = require("../utils");
-var unixStylePath = utils.unixStylePath;
-var through = require("through2");
-var path = require("path");
-var acorn = require("acorn");
-var SourceMapGenerator = require("source-map").SourceMapGenerator;
-var css = require("css");
-var initInternals = require("./index.internals");
+const utils = require("../utils");
+const unixStylePath = utils.unixStylePath;
+const through = require("through2");
+const path = require("path");
+const acorn = require("acorn");
+const SourceMapGenerator = require("source-map").SourceMapGenerator;
+const css = require("css");
+const initInternals = require("./index.internals");
 
 /**
  * Initialize source mapping chain
  */
 function init(options) {
-	var debug = require("../debug").spawn("init");
+	const debug = require("../debug").spawn("init");
 
 	function sourceMapInit(file, encoding, callback) {
 		// pass through if file is null or already has a source map
@@ -34,12 +34,12 @@ function init(options) {
 			return options;
 		});
 
-		var fileContent = file.contents.toString();
-		var sourceMap, preExistingComment;
-		var internals = initInternals(options, file, fileContent);
+		let fileContent = file.contents.toString();
+		let sourceMap, preExistingComment;
+		const internals = initInternals(options, file, fileContent);
 
 		if (options.loadMaps) {
-			var result = internals.loadMaps();
+			const result = internals.loadMaps();
 			sourceMap = result.map;
 			fileContent = result.content;
 			preExistingComment = result.preExistingComment;
@@ -52,20 +52,20 @@ function init(options) {
 			debug(function () {
 				return "identityMap";
 			});
-			var fileType = path.extname(file.path);
-			var source = unixStylePath(file.relative);
-			var generator = new SourceMapGenerator({ file: source });
+			const fileType = path.extname(file.path);
+			const source = unixStylePath(file.relative);
+			const generator = new SourceMapGenerator({ file: source });
 
 			if (fileType === ".js") {
-				var tokenizer = acorn.tokenizer(fileContent, {
+				const tokenizer = acorn.tokenizer(fileContent, {
 					locations: true,
 				});
 				while (true) {
-					var token = tokenizer.getToken();
+					const token = tokenizer.getToken();
 					if (token.type.label === "eof") {
 						break;
 					}
-					var mapping = {
+					const mapping = {
 						original: token.loc.start,
 						generated: token.loc.start,
 						source: source,
@@ -79,11 +79,11 @@ function init(options) {
 				sourceMap = generator.toJSON();
 			} else if (fileType === ".css") {
 				debug("css");
-				var ast = css.parse(fileContent, { silent: true });
+				const ast = css.parse(fileContent, { silent: true });
 				debug(function () {
 					return ast;
 				});
-				var registerTokens = function (ast) {
+				const registerTokens = function (ast) {
 					if (ast.position) {
 						generator.addMapping({
 							original: ast.position.start,
@@ -101,7 +101,7 @@ function init(options) {
 						});
 					}
 
-					for (var key in ast) {
+					for (const key in ast) {
 						logAst(key, ast);
 						if (key !== "position") {
 							if (
@@ -113,7 +113,7 @@ function init(options) {
 								debug(function () {
 									return "@@@@ ast[key] isArray @@@@";
 								});
-								for (var i = 0; i < ast[key].length; i++) {
+								for (let i = 0; i < ast[key].length; i++) {
 									registerTokens(ast[key][i]);
 								}
 							}

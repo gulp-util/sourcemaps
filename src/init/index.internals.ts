@@ -1,18 +1,18 @@
 "use strict";
 
-var utils = require("../utils");
-var rootDebug = require("../debug");
-var convert = require("convert-source-map");
-var stripBom = require("strip-bom-string");
-var urlRegex = utils.urlRegex;
-var fs = require("graceful-fs");
-var path = require("path");
-var unixStylePath = utils.unixStylePath;
-var exceptionToString = utils.exceptionToString;
+const utils = require("../utils");
+const rootDebug = require("../debug");
+const convert = require("convert-source-map");
+const stripBom = require("strip-bom-string");
+const urlRegex = utils.urlRegex;
+const fs = require("graceful-fs");
+const path = require("path");
+const unixStylePath = utils.unixStylePath;
+const exceptionToString = utils.exceptionToString;
 
 module.exports = function (options, file, fileContent) {
 	function loadMaps() {
-		var sources = {
+		const sources = {
 			path: "",
 			map: null,
 			content: fileContent,
@@ -31,7 +31,7 @@ module.exports = function (options, file, fileContent) {
 	}
 
 	function _fixSources(sources) {
-		var debug = rootDebug.spawn("init:internals:loadMaps:_fixSources");
+		const debug = rootDebug.spawn("init:internals:loadMaps:_fixSources");
 
 		// fix source paths and sourceContent for imported source map
 		if (sources.map) {
@@ -42,13 +42,13 @@ module.exports = function (options, file, fileContent) {
 						sources.map.sourcesContent[i] || null;
 					return;
 				}
-				var absPath = path.resolve(sources.path, source);
+				let absPath = path.resolve(sources.path, source);
 				sources.map.sources[i] = unixStylePath(
 					path.relative(file.base, absPath)
 				);
 
 				if (!sources.map.sourcesContent[i]) {
-					var sourceContent = null;
+					let sourceContent = null;
 					if (sources.map.sourceRoot) {
 						if (sources.map.sourceRoot.match(urlRegex)) {
 							sources.map.sourcesContent[i] = null;
@@ -94,7 +94,7 @@ module.exports = function (options, file, fileContent) {
 	}
 
 	function _getInlineSources(sources) {
-		var debug = rootDebug.spawn(
+		const debug = rootDebug.spawn(
 			"init:internals:loadMaps:_getInlineSources"
 		);
 
@@ -118,12 +118,14 @@ module.exports = function (options, file, fileContent) {
 	}
 
 	function _getFileSources(sources) {
-		var debug = rootDebug.spawn("init:internals:loadMaps:_getFileSources");
+		const debug = rootDebug.spawn(
+			"init:internals:loadMaps:_getFileSources"
+		);
 
 		// look for source map comment referencing a source map file
-		var mapComment = convert.mapFileCommentRegex.exec(sources.content);
+		const mapComment = convert.mapFileCommentRegex.exec(sources.content);
 
-		var mapFile;
+		let mapFile;
 		if (mapComment) {
 			sources.preExistingComment = mapComment[1] || mapComment[2];
 			mapFile = path.resolve(

@@ -1,12 +1,12 @@
 "use strict";
 
 module.exports = function (destPath, options) {
-	var utils = require("../utils");
-	var unixStylePath = utils.unixStylePath;
-	var fs = require("graceful-fs");
-	var path = require("path");
-	var stripBom = require("strip-bom-string");
-	var rootDebug = require("../debug").spawn("write:internals");
+	const utils = require("../utils");
+	const unixStylePath = utils.unixStylePath;
+	const fs = require("graceful-fs");
+	const path = require("path");
+	const stripBom = require("strip-bom-string");
+	const rootDebug = require("../debug").spawn("write:internals");
 
 	rootDebug(function () {
 		return "options";
@@ -16,9 +16,9 @@ module.exports = function (destPath, options) {
 	});
 
 	function setSourceRoot(file) {
-		var debug = rootDebug.spawn("setSourceRoot");
+		const debug = rootDebug.spawn("setSourceRoot");
 
-		var sourceMap = file.sourceMap;
+		const sourceMap = file.sourceMap;
 		if (typeof options.sourceRoot === "function") {
 			debug(function () {
 				return "is function";
@@ -39,7 +39,7 @@ module.exports = function (destPath, options) {
 	}
 
 	function mapSources(file) {
-		var debug = rootDebug.spawn("mapSources");
+		const debug = rootDebug.spawn("mapSources");
 
 		// NOTE: make sure source mapping happens after content has been loaded
 		if (options.mapSources && typeof options.mapSources === "function") {
@@ -102,16 +102,16 @@ module.exports = function (destPath, options) {
 	}
 
 	function loadContent(file) {
-		var debug = rootDebug.spawn("loadContent");
+		const debug = rootDebug.spawn("loadContent");
 
-		var sourceMap = file.sourceMap;
+		const sourceMap = file.sourceMap;
 		if (options.includeContent) {
 			sourceMap.sourcesContent = sourceMap.sourcesContent || [];
 
 			// load missing source content
-			for (var i = 0; i < sourceMap.sources.length; i++) {
+			for (let i = 0; i < sourceMap.sources.length; i++) {
 				if (!sourceMap.sourcesContent[i]) {
-					var sourcePath = path.resolve(
+					const sourcePath = path.resolve(
 						file.base,
 						sourceMap.sources[i]
 					);
@@ -135,15 +135,15 @@ module.exports = function (destPath, options) {
 	}
 
 	function mapDestPath(file, stream) {
-		var debug = rootDebug.spawn("mapDestPath");
-		var sourceMap = file.sourceMap;
+		const debug = rootDebug.spawn("mapDestPath");
+		const sourceMap = file.sourceMap;
 
-		var comment;
-		var commentFormatter = utils.getCommentFormatter(file);
+		let comment;
+		const commentFormatter = utils.getCommentFormatter(file);
 
 		if (destPath === undefined || destPath === null) {
 			// encode source map into comment
-			var base64Map = new Buffer(JSON.stringify(sourceMap)).toString(
+			const base64Map = new Buffer(JSON.stringify(sourceMap)).toString(
 				"base64"
 			);
 			comment = commentFormatter(
@@ -153,22 +153,22 @@ module.exports = function (destPath, options) {
 					base64Map
 			);
 		} else {
-			var mapFile = path.join(destPath, file.relative) + ".map";
+			let mapFile = path.join(destPath, file.relative) + ".map";
 			// custom map file name
 			if (options.mapFile && typeof options.mapFile === "function") {
 				mapFile = options.mapFile(mapFile);
 			}
 
-			var sourceMapPath = path.join(file.base, mapFile);
+			const sourceMapPath = path.join(file.base, mapFile);
 
 			// if explicit destination path is set
 			if (options.destPath) {
-				var destSourceMapPath = path.join(
+				const destSourceMapPath = path.join(
 					file.cwd,
 					options.destPath,
 					mapFile
 				);
-				var destFilePath = path.join(
+				const destFilePath = path.join(
 					file.cwd,
 					options.destPath,
 					file.relative
@@ -218,7 +218,7 @@ module.exports = function (destPath, options) {
 				}
 			}
 
-			var sourceMapFile = file.clone(
+			const sourceMapFile = file.clone(
 				options.clone || { deep: false, contents: false }
 			);
 			sourceMapFile.path = sourceMapPath;
@@ -248,13 +248,13 @@ module.exports = function (destPath, options) {
 			};
 			stream.push(sourceMapFile);
 
-			var sourceMapPathRelative = path.relative(
+			let sourceMapPathRelative = path.relative(
 				path.dirname(file.path),
 				sourceMapPath
 			);
 
 			if (options.sourceMappingURLPrefix) {
-				var prefix = "";
+				let prefix = "";
 				if (typeof options.sourceMappingURLPrefix === "function") {
 					prefix = options.sourceMappingURLPrefix(file);
 				} else {

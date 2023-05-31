@@ -1,16 +1,16 @@
 "use strict";
-var path = require("path");
-var detectNewline = require("detect-newline");
+const path = require("path");
+const detectNewline = require("detect-newline");
 
 function unixStylePath(filePath) {
 	return filePath.split(path.sep).join("/");
 }
 
-var PLUGIN_NAME = require("../package.json").name;
+const PLUGIN_NAME = require("../package.json").name;
 
-var urlRegex = /^(https?|webpack(-[^:]+)?):\/\//;
+const urlRegex = /^(https?|webpack(-[^:]+)?):\/\//;
 
-var debug = require("./debug").spawn("utils");
+const debug = require("./debug").spawn("utils");
 /*
 So reusing the same ref for a regex (with global (g)) is from a poor decision in js.
 See http://stackoverflow.com/questions/10229144/bug-with-regexp-in-javascript-when-do-global-search
@@ -21,7 +21,7 @@ function sourceMapUrlRegEx() {
 	return /\/\/# sourceMappingURL=.*/g;
 }
 
-var commentFormatters = {
+const commentFormatters = {
 	css: function cssCommentFormatter(preLine, newline, url) {
 		return preLine + "/*# sourceMappingURL=" + url + " */" + newline;
 	},
@@ -34,11 +34,11 @@ var commentFormatters = {
 };
 
 function getCommentFormatter(file) {
-	var extension = file.relative.split(".").pop();
-	var fileContents = file.contents.toString();
-	var newline = detectNewline.graceful(fileContents || "");
+	const extension = file.relative.split(".").pop();
+	const fileContents = file.contents.toString();
+	const newline = detectNewline.graceful(fileContents || "");
 
-	var commentFormatter = commentFormatters.default;
+	let commentFormatter = commentFormatters.default;
 
 	if (file.sourceMap.preExistingComment) {
 		commentFormatter = (

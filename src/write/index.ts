@@ -1,8 +1,8 @@
 "use strict";
-var utils = require("../utils");
-var through = require("through2");
-var unixStylePath = utils.unixStylePath;
-var internalsInit = require("./index.internals");
+const utils = require("../utils");
+const through = require("through2");
+const unixStylePath = utils.unixStylePath;
+const internalsInit = require("./index.internals");
 
 /**
  * Write the source map
@@ -11,7 +11,7 @@ var internalsInit = require("./index.internals");
  *
  */
 function write(destPath, options) {
-	var debug = require("../debug").spawn("write");
+	const debug = require("../debug").spawn("write");
 
 	debug(function () {
 		return "destPath";
@@ -51,7 +51,7 @@ function write(destPath, options) {
 		return options;
 	});
 
-	var internals = internalsInit(destPath, options);
+	const internals = internalsInit(destPath, options);
 
 	function sourceMapWrite(file, encoding, callback) {
 		if (file.isNull() || !file.sourceMap) {
