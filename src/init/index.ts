@@ -3,7 +3,7 @@ import through = require("through2");
 import path from "path";
 import acorn from "acorn";
 import { SourceMapGenerator } from "source-map";
-import * as css from "css";
+import css from "css-tree";
 import initInternals from "./index.internals";
 import _debug from "../debug";
 
@@ -78,47 +78,21 @@ function init(options) {
 				sourceMap = generator.toJSON();
 			} else if (fileType === ".css") {
 				debug("css");
-				const ast = css.parse(fileContent, { silent: true });
+				const ast = css.parse(fileContent, { positions: true });
 				debug(function () {
 					return ast;
 				});
-				const registerTokens = function (ast) {
-					if (ast.position) {
-						generator.addMapping({
-							original: ast.position.start,
-							generated: ast.position.start,
-							source: source,
-						});
+				const registerTokens = function (ast: css.CssNode) {
+					if (!["Rule", "Declaration"].includes(ast.type)) {
+						return;
 					}
-
-					function logAst(key, ast) {
-						debug(function () {
-							return "key: " + key;
-						});
-						debug(function () {
-							return ast[key];
-						});
-					}
-
-					for (const key in ast) {
-						logAst(key, ast);
-						if (key !== "position") {
-							if (
-								Object.prototype.toString.call(ast[key]) ===
-								"[object Object]"
-							) {
-								registerTokens(ast[key]);
-							} else if (Array.isArray(ast[key])) {
-								debug(function () {
-									return "@@@@ ast[key] isArray @@@@";
-								});
-								for (let i = 0; i < ast[key].length; i++) {
-									registerTokens(ast[key][i]);
-								}
-							}
-						}
-					}
+					generator.addMapping({
+						original: ast.loc.start,
+						generated: ast.loc.start,
+						source: source,
+					});
 				};
+				css.walk(ast, registerTokens);
 				registerTokens(ast);
 				generator.setSourceContent(source, fileContent);
 				sourceMap = generator.toJSON();
