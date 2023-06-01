@@ -1,8 +1,4 @@
-"use strict";
-
-module.exports = {
-	init: require("./init"),
-	write: require("./write"),
-	mapSources: require("@gulp-sourcemaps/map-sources"),
-	identityMap: require("@gulp-sourcemaps/identity-map"),
-};
+export { init } from "./init";
+export { write } from "./write";
+export { default as mapSources } from "@gulp-sourcemaps/map-sources";
+export { default as identityMap } from "@gulp-sourcemaps/identity-map";

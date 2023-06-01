@@ -1,13 +1,13 @@
 "use strict";
 
-module.exports = function (destPath, options) {
-	const utils = require("../utils");
-	const unixStylePath = utils.unixStylePath;
-	const fs = require("graceful-fs");
-	const path = require("path");
-	const stripBom = require("strip-bom-string");
-	const rootDebug = require("../debug").spawn("write:internals");
+import { unixStylePath, getCommentFormatter } from "../utils";
+import fs from "graceful-fs";
+import path from "path";
+import stripBom = require("strip-bom-string");
+import _debug from "../debug";
+const rootDebug = _debug.spawn("write:internals");
 
+export default function internalsInit(destPath, options) {
 	rootDebug(function () {
 		return "options";
 	});
@@ -139,7 +139,7 @@ module.exports = function (destPath, options) {
 		const sourceMap = file.sourceMap;
 
 		let comment;
-		const commentFormatter = utils.getCommentFormatter(file);
+		const commentFormatter = getCommentFormatter(file);
 
 		if (destPath === undefined || destPath === null) {
 			// encode source map into comment
@@ -291,4 +291,4 @@ module.exports = function (destPath, options) {
 		mapSources: mapSources,
 		mapDestPath: mapDestPath,
 	};
-};
+}

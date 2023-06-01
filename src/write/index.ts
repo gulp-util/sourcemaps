@@ -1,8 +1,8 @@
 "use strict";
-const utils = require("../utils");
-const through = require("through2");
-const unixStylePath = utils.unixStylePath;
-const internalsInit = require("./index.internals");
+import { PLUGIN_NAME, unixStylePath } from "../utils";
+import through = require("through2");
+import internalsInit from "./index.internals";
+import _debug from "../debug";
 
 /**
  * Write the source map
@@ -11,7 +11,7 @@ const internalsInit = require("./index.internals");
  *
  */
 function write(destPath, options) {
-	const debug = require("../debug").spawn("write");
+	const debug = _debug.spawn("write");
 
 	debug(function () {
 		return "destPath";
@@ -61,7 +61,7 @@ function write(destPath, options) {
 
 		if (file.isStream()) {
 			return callback(
-				new Error(utils.PLUGIN_NAME + "-write: Streaming not supported")
+				new Error(PLUGIN_NAME + "-write: Streaming not supported")
 			);
 		}
 
@@ -80,4 +80,4 @@ function write(destPath, options) {
 	return through.obj(sourceMapWrite);
 }
 
-module.exports = write;
+export { write };

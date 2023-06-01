@@ -1,7 +1,7 @@
 "use strict";
-const path = require("path");
-const detectNewline = require("detect-newline");
-
+import path from "path";
+import detectNewline from "detect-newline";
+import _debug from "./debug";
 function unixStylePath(filePath) {
 	return filePath.split(path.sep).join("/");
 }
@@ -10,7 +10,7 @@ const PLUGIN_NAME = require("../package.json").name;
 
 const urlRegex = /^(https?|webpack(-[^:]+)?):\/\//;
 
-const debug = require("./debug").spawn("utils");
+const debug = _debug.spawn("utils");
 /*
 So reusing the same ref for a regex (with global (g)) is from a poor decision in js.
 See http://stackoverflow.com/questions/10229144/bug-with-regexp-in-javascript-when-do-global-search
@@ -74,12 +74,12 @@ function exceptionToString(exception) {
 	return exception.message || "";
 }
 
-module.exports = {
-	unixStylePath: unixStylePath,
-	PLUGIN_NAME: PLUGIN_NAME,
-	urlRegex: urlRegex,
-	sourceMapUrlRegEx: sourceMapUrlRegEx,
-	getCommentFormatter: getCommentFormatter,
-	getInlinePreExisting: getInlinePreExisting,
-	exceptionToString: exceptionToString,
+export {
+	unixStylePath,
+	PLUGIN_NAME,
+	urlRegex,
+	sourceMapUrlRegEx,
+	getCommentFormatter,
+	getInlinePreExisting,
+	exceptionToString,
 };

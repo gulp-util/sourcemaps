@@ -1,16 +1,18 @@
 "use strict";
 
-const utils = require("../utils");
-const rootDebug = require("../debug");
-const convert = require("convert-source-map");
-const stripBom = require("strip-bom-string");
-const urlRegex = utils.urlRegex;
-const fs = require("graceful-fs");
-const path = require("path");
-const unixStylePath = utils.unixStylePath;
-const exceptionToString = utils.exceptionToString;
+import {
+	getInlinePreExisting,
+	urlRegex,
+	unixStylePath,
+	exceptionToString,
+} from "../utils";
+import rootDebug from "../debug";
+import convert from "convert-source-map";
+import stripBom from "strip-bom-string";
+import fs from "graceful-fs";
+import path from "path";
 
-module.exports = function (options, file, fileContent) {
+export default function (options, file, fileContent) {
 	function loadMaps() {
 		const sources = {
 			path: "",
@@ -98,9 +100,7 @@ module.exports = function (options, file, fileContent) {
 			"init:internals:loadMaps:_getInlineSources"
 		);
 
-		sources.preExistingComment = utils.getInlinePreExisting(
-			sources.content
-		);
+		sources.preExistingComment = getInlinePreExisting(sources.content);
 		// Try to read inline source map
 		sources.map = convert.fromSource(sources.content, options.largeFile);
 
@@ -160,4 +160,4 @@ module.exports = function (options, file, fileContent) {
 	return {
 		loadMaps: loadMaps,
 	};
-};
+}

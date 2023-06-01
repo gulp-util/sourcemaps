@@ -1,18 +1,18 @@
 "use strict";
-const utils = require("../utils");
-const unixStylePath = utils.unixStylePath;
-const through = require("through2");
-const path = require("path");
-const acorn = require("acorn");
-const SourceMapGenerator = require("source-map").SourceMapGenerator;
-const css = require("css");
-const initInternals = require("./index.internals");
+import { unixStylePath, PLUGIN_NAME } from "../utils";
+import through = require("through2");
+import path from "path";
+import acorn from "acorn";
+import { SourceMapGenerator } from "source-map";
+import * as css from "css";
+import initInternals from "./index.internals";
+import _debug from "../debug";
 
 /**
  * Initialize source mapping chain
  */
 function init(options) {
-	const debug = require("../debug").spawn("init");
+	const debug = _debug.spawn("init");
 
 	function sourceMapInit(file, encoding, callback) {
 		// pass through if file is null or already has a source map
@@ -23,7 +23,7 @@ function init(options) {
 
 		if (file.isStream()) {
 			return callback(
-				new Error(utils.PLUGIN_NAME + "-init: Streaming not supported")
+				new Error(PLUGIN_NAME + "-init: Streaming not supported")
 			);
 		}
 
@@ -152,4 +152,4 @@ function init(options) {
 	return through.obj(sourceMapInit);
 }
 
-module.exports = init;
+export { init };

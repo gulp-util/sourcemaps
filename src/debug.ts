@@ -1,3 +1,3 @@
-module.exports = require("debug-fabulous").spawnable(
-	require("../package.json").name
-);
+import { spawnable } from "debug-fabulous";
+
+export default spawnable(require("../package.json").name);
