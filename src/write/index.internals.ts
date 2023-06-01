@@ -1,5 +1,3 @@
-"use strict";
-
 import { unixStylePath, getCommentFormatter } from "../utils";
 import fs from "graceful-fs";
 import path from "path";

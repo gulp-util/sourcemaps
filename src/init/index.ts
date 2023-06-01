@@ -1,4 +1,3 @@
-"use strict";
 import { unixStylePath, PLUGIN_NAME } from "../utils";
 import through = require("through2");
 import path from "path";

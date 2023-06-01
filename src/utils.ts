@@ -1,4 +1,3 @@
-"use strict";
 import path from "path";
 import detectNewline from "detect-newline";
 import _debug from "./debug";

@@ -5,6 +5,7 @@
 		"outDir": "lib",
 		"module": "commonjs",
 		"target": "ES6",
+		"alwaysStrict": true,
 		"noImplicitAny": true,
 		"declaration": true
 	}

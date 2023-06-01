@@ -1,4 +1,3 @@
-"use strict";
 import { PLUGIN_NAME, unixStylePath } from "../utils";
 import through = require("through2");
 import internalsInit from "./index.internals";
