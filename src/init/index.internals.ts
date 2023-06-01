@@ -100,7 +100,7 @@ export default function (options, file, fileContent) {
 
 		sources.preExistingComment = getInlinePreExisting(sources.content);
 		// Try to read inline source map
-		sources.map = convert.fromSource(sources.content, options.largeFile);
+		sources.map = convert.fromSource(sources.content);
 
 		if (!sources.map) {
 			return sources;
