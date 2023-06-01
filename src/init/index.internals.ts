@@ -89,7 +89,7 @@ export default function (options, file, fileContent) {
 				}
 			});
 			// remove source map comment from source
-			file.contents = new Buffer(sources.content, "utf8");
+			file.contents = Buffer.from(sources.content, "utf8");
 		}
 	}
 

@@ -141,7 +141,7 @@ export default function internalsInit(destPath, options) {
 
 		if (destPath === undefined || destPath === null) {
 			// encode source map into comment
-			const base64Map = new Buffer(JSON.stringify(sourceMap)).toString(
+			const base64Map = Buffer.from(JSON.stringify(sourceMap)).toString(
 				"base64"
 			);
 			comment = commentFormatter(
@@ -220,7 +220,7 @@ export default function internalsInit(destPath, options) {
 				options.clone || { deep: false, contents: false }
 			);
 			sourceMapFile.path = sourceMapPath;
-			sourceMapFile.contents = new Buffer(JSON.stringify(sourceMap));
+			sourceMapFile.contents = Buffer.from(JSON.stringify(sourceMap));
 			sourceMapFile.stat = {
 				isFile: function () {
 					return true;
@@ -279,7 +279,10 @@ export default function internalsInit(destPath, options) {
 
 		// append source map comment
 		if (options.addComment) {
-			file.contents = Buffer.concat([file.contents, new Buffer(comment)]);
+			file.contents = Buffer.concat([
+				file.contents,
+				Buffer.from(comment),
+			]);
 		}
 	}
 
