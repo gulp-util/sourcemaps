@@ -30,7 +30,11 @@
 		"through2": "^2.0.0"
 	},
 	"devDependencies": {
+		"@types/convert-source-map": "^1.0.0",
+		"@types/detect-newline": "^2.0.0",
+		"@types/graceful-fs": "^4.0.0",
 		"@types/node": "^20.2.5",
+		"@types/through2": "^2.0.0",
 		"@typescript-eslint/eslint-plugin": "^5.59.8",
 		"@typescript-eslint/parser": "^5.59.8",
 		"mocha": "^10.2.0",
