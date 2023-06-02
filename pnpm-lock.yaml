@@ -9,6 +9,7 @@ specifiers:
   '@types/graceful-fs': ^4.0.0
   '@types/node': ^20.2.5
   '@types/through2': ^2.0.0
+  '@types/vinyl': ^2.0.7
   '@typescript-eslint/eslint-plugin': ^5.59.8
   '@typescript-eslint/parser': ^5.59.8
   acorn: ^6.4.1
@@ -45,6 +46,7 @@ devDependencies:
   '@types/graceful-fs': 4.1.6
   '@types/node': 20.2.5
   '@types/through2': 2.0.38
+  '@types/vinyl': 2.0.7
   '@typescript-eslint/eslint-plugin': 5.59.8_hnhvdstanz2zc7wdbtnhvs2o7u
   '@typescript-eslint/parser': 5.59.8_opaykosi7ysrbskpnffskmbrki
   eslint: 8.41.0
@@ -214,6 +216,10 @@ packages:
     resolution: {integrity: sha512-vcHS4yQkTfy+8QISuAFS+2SCjNcGs37+CWzxrrIOMv7yvPnYd6f1AeUErVEHVCu8dZreAHUqzV8RrjzeBorvtQ==}
     dev: true
 
+  /@types/expect/1.20.4:
+    resolution: {integrity: sha512-Q5Vn3yjTDyCMV50TB6VRIbQNxSE4OmZR86VSbGaNpfUolm0iePBB4KdEEHmxoY5sT2+2DIvXW0rvMDP2nHZ4Mg==}
+    dev: true
+
   /@types/graceful-fs/4.1.6:
     resolution: {integrity: sha512-Sig0SNORX9fdW+bQuTEovKj3uHcUL6LQKbCrrqb1X7J6/ReAbhCXRAhc+SMejhLELFj2QcyuxmUooZ4bt5ReSw==}
     dependencies:
@@ -255,6 +261,13 @@ packages:
   /@types/through2/2.0.38:
     resolution: {integrity: sha512-YFu+nHmjxMurkH1BSzA0Z1WrKDAY8jUKPZctNQn7mc+/KKtp2XxnclHFXxdB1m7Iqnzb5aywgP8TMK283LezGQ==}
     dependencies:
+      '@types/node': 20.2.5
+    dev: true
+
+  /@types/vinyl/2.0.7:
+    resolution: {integrity: sha512-4UqPv+2567NhMQuMLdKAyK4yzrfCqwaTt6bLhHEs8PFcxbHILsrxaY63n4wgE/BRLDWDQeI+WcTmkXKExh9hQg==}
+    dependencies:
+      '@types/expect': 1.20.4
       '@types/node': 20.2.5
     dev: true
 
