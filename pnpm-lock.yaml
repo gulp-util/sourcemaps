@@ -29,6 +29,13 @@ specifiers:
 dependencies:
   '@gulp-sourcemaps/identity-map': 2.0.1
   '@gulp-sourcemaps/map-sources': 1.0.0
+  '@types/convert-source-map': 1.5.2
+  '@types/css-tree': 2.3.1
+  '@types/detect-newline': 2.1.0
+  '@types/graceful-fs': 4.1.6
+  '@types/node': 20.2.5
+  '@types/through2': 2.0.38
+  '@types/vinyl': 2.0.7
   acorn: 6.4.2
   convert-source-map: 1.9.0
   css-tree: 2.3.1
@@ -40,13 +47,6 @@ dependencies:
   through2: 2.0.5
 
 devDependencies:
-  '@types/convert-source-map': 1.5.2
-  '@types/css-tree': 2.3.1
-  '@types/detect-newline': 2.1.0
-  '@types/graceful-fs': 4.1.6
-  '@types/node': 20.2.5
-  '@types/through2': 2.0.38
-  '@types/vinyl': 2.0.7
   '@typescript-eslint/eslint-plugin': 5.59.8_hnhvdstanz2zc7wdbtnhvs2o7u
   '@typescript-eslint/parser': 5.59.8_opaykosi7ysrbskpnffskmbrki
   eslint: 8.41.0
@@ -206,25 +206,25 @@ packages:
 
   /@types/convert-source-map/1.5.2:
     resolution: {integrity: sha512-tHs++ZeXer40kCF2JpE51Hg7t4HPa18B1b1Dzy96S0eCw8QKECNMYMfwa1edK/x8yCN0r4e6ewvLcc5CsVGkdg==}
-    dev: true
+    dev: false
 
   /@types/css-tree/2.3.1:
     resolution: {integrity: sha512-3m636Jz4d9d+lHVMp6FNLsUWQrfOx1xpm1SBxPbQYSNNgXMe+XswcsDeo1ldyULiuzYyWKk1kmvkLTgNq+215Q==}
-    dev: true
+    dev: false
 
   /@types/detect-newline/2.1.0:
     resolution: {integrity: sha512-vcHS4yQkTfy+8QISuAFS+2SCjNcGs37+CWzxrrIOMv7yvPnYd6f1AeUErVEHVCu8dZreAHUqzV8RrjzeBorvtQ==}
-    dev: true
+    dev: false
 
   /@types/expect/1.20.4:
     resolution: {integrity: sha512-Q5Vn3yjTDyCMV50TB6VRIbQNxSE4OmZR86VSbGaNpfUolm0iePBB4KdEEHmxoY5sT2+2DIvXW0rvMDP2nHZ4Mg==}
-    dev: true
+    dev: false
 
   /@types/graceful-fs/4.1.6:
     resolution: {integrity: sha512-Sig0SNORX9fdW+bQuTEovKj3uHcUL6LQKbCrrqb1X7J6/ReAbhCXRAhc+SMejhLELFj2QcyuxmUooZ4bt5ReSw==}
     dependencies:
       '@types/node': 20.2.5
-    dev: true
+    dev: false
 
   /@types/istanbul-lib-coverage/2.0.4:
     resolution: {integrity: sha512-z/QT1XN4K4KYuslS23k62yDIDLwLFkzxOuMplDtObz0+y7VqJCaO2o+SPwHCvLFZh7xazvvoor2tA/hPz9ee7g==}
@@ -248,7 +248,6 @@ packages:
 
   /@types/node/20.2.5:
     resolution: {integrity: sha512-JJulVEQXmiY9Px5axXHeYGLSjhkZEnD+MDPDGbCbIAbMslkKwmygtZFy1X6s/075Yo94sf8GuSlFfPzysQrWZQ==}
-    dev: true
 
   /@types/semver/7.5.0:
     resolution: {integrity: sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==}
@@ -262,14 +261,14 @@ packages:
     resolution: {integrity: sha512-YFu+nHmjxMurkH1BSzA0Z1WrKDAY8jUKPZctNQn7mc+/KKtp2XxnclHFXxdB1m7Iqnzb5aywgP8TMK283LezGQ==}
     dependencies:
       '@types/node': 20.2.5
-    dev: true
+    dev: false
 
   /@types/vinyl/2.0.7:
     resolution: {integrity: sha512-4UqPv+2567NhMQuMLdKAyK4yzrfCqwaTt6bLhHEs8PFcxbHILsrxaY63n4wgE/BRLDWDQeI+WcTmkXKExh9hQg==}
     dependencies:
       '@types/expect': 1.20.4
       '@types/node': 20.2.5
-    dev: true
+    dev: false
 
   /@types/yargs-parser/21.0.0:
     resolution: {integrity: sha512-iO9ZQHkZxHn4mSakYV0vFHAVDyEOIJQrV2uZ06HxEPcx+mt8swXoZHIbaaJ2crJYFfErySgktuTZ3BeLz+XmFA==}
