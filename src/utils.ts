@@ -32,32 +32,38 @@ const commentFormatters = {
 	},
 };
 
+type formatterKeys = keyof typeof commentFormatters;
+
+function formatterExists(extension: string): extension is formatterKeys {
+	return extension in commentFormatters;
+}
+
+function resolveFormatter(extension: string) {
+	if (formatterExists(extension)) {
+		return commentFormatters[extension];
+	}
+	return commentFormatters.default;
+}
+
 function getCommentFormatter(file) {
 	const extension = file.relative.split(".").pop();
 	const fileContents = file.contents.toString();
 	const newline = detectNewline.graceful(fileContents || "");
 
-	let commentFormatter = commentFormatters.default;
+	const commentFormatter = resolveFormatter(extension);
 
+	debug(function () {
+		return "commentFormatter " + commentFormatter.name;
+	});
 	if (file.sourceMap.preExistingComment) {
-		commentFormatter = (
-			commentFormatters[extension] || commentFormatter
-		).bind(undefined, "", newline);
 		debug(function () {
 			return (
 				"preExistingComment commentFormatter " + commentFormatter.name
 			);
 		});
-	} else {
-		commentFormatter = (
-			commentFormatters[extension] || commentFormatter
-		).bind(undefined, newline, newline);
+		return commentFormatter.bind(undefined, "", newline);
 	}
-
-	debug(function () {
-		return "commentFormatter " + commentFormatter.name;
-	});
-	return commentFormatter;
+	return commentFormatter.bind(undefined, newline, newline);
 }
 
 function getInlinePreExisting(fileContent) {
