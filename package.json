@@ -32,7 +32,7 @@
 		"debug-fabulous": "^1.0.0",
 		"detect-newline": "^2.0.0",
 		"graceful-fs": "^4.0.0",
-		"source-map": "^0.6.0",
+		"source-map": "^0.7.0",
 		"strip-bom-string": "^1.0.0",
 		"through2": "^2.0.0"
 	},
