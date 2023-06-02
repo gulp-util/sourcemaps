@@ -2,6 +2,7 @@ import { PLUGIN_NAME, unixStylePath } from "../utils";
 import through = require("through2");
 import internalsInit from "./index.internals";
 import _debug from "../debug";
+import { Options } from "../types";
 import type File from "vinyl";
 
 /**
@@ -10,7 +11,7 @@ import type File from "vinyl";
  * @param options options to change the way the source map is written
  *
  */
-function write(destPath: string, options) {
+function write(destPath: string, options: Options) {
 	const debug = _debug.spawn("write");
 
 	debug(function () {

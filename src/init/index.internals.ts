@@ -9,11 +9,12 @@ import convert from "convert-source-map";
 import stripBom from "strip-bom-string";
 import fs from "graceful-fs";
 import path from "path";
+import { Options, Sources } from "../types";
 import type File from "vinyl";
 
-export default function (options, file: File, fileContent: string) {
+export default function (options: Options, file: File, fileContent: string) {
 	function loadMaps() {
-		const sources = {
+		const sources: Sources = {
 			path: "",
 			map: null,
 			content: fileContent,
@@ -31,7 +32,7 @@ export default function (options, file: File, fileContent: string) {
 		return sources;
 	}
 
-	function _fixSources(sources) {
+	function _fixSources(sources: Sources) {
 		const debug = rootDebug.spawn("init:internals:loadMaps:_fixSources");
 
 		// fix source paths and sourceContent for imported source map
@@ -94,7 +95,7 @@ export default function (options, file: File, fileContent: string) {
 		}
 	}
 
-	function _getInlineSources(sources) {
+	function _getInlineSources(sources: Sources) {
 		const debug = rootDebug.spawn(
 			"init:internals:loadMaps:_getInlineSources"
 		);
@@ -116,7 +117,7 @@ export default function (options, file: File, fileContent: string) {
 		}
 	}
 
-	function _getFileSources(sources) {
+	function _getFileSources(sources: Sources) {
 		const debug = rootDebug.spawn(
 			"init:internals:loadMaps:_getFileSources"
 		);

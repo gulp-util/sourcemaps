@@ -3,10 +3,11 @@ import fs from "graceful-fs";
 import path from "path";
 import stripBom = require("strip-bom-string");
 import _debug from "../debug";
+import { Options } from "../types";
 import type File from "vinyl";
 const rootDebug = _debug.spawn("write:internals");
 
-export default function internalsInit(destPath: string, options) {
+export default function internalsInit(destPath: string, options: Options) {
 	rootDebug(function () {
 		return "options";
 	});
