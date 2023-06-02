@@ -22,25 +22,25 @@ type SourceMapMapper = {
 	(sourcePath: string, file: File): string;
 };
 
-type InitOptions = Partial<{
-	loadMaps: boolean;
-	largeFile: boolean;
-	identityMap: boolean;
-}>;
+interface InitOptions {
+	loadMaps?: boolean;
+	largeFile?: boolean;
+	identityMap?: boolean;
+}
 
-type WriteOptions = Partial<{
-	addComment: boolean;
-	includeContent: boolean;
-	mapSourcesAbsolute: boolean;
-	charset: string;
-	destPath: string;
-	clone: boolean | CloneOptions;
-	mapFile: string | MapFilenameMapper;
-	sourceRoot: string | WriteMapper;
-	sourceMappingURLPrefix: string | WriteMapper;
-	sourceMappingURL: SourceUrlMapper;
-	mapSources: SourceMapMapper;
-}>;
+interface WriteOptions {
+	addComment?: boolean;
+	includeContent?: boolean;
+	mapSourcesAbsolute?: boolean;
+	charset?: string;
+	destPath?: string;
+	clone?: boolean | CloneOptions;
+	mapFile?: string | MapFilenameMapper;
+	sourceRoot?: string | WriteMapper;
+	sourceMappingURLPrefix?: string | WriteMapper;
+	sourceMappingURL?: SourceUrlMapper;
+	mapSources?: SourceMapMapper;
+}
 
 type Sources = {
 	path: string;
