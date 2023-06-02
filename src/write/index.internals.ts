@@ -282,7 +282,7 @@ export default function internalsInit(destPath: string, options: Options) {
 		}
 
 		// append source map comment
-		if (options.addComment) {
+		if (options.addComment && file.isBuffer()) {
 			file.contents = Buffer.concat([
 				file.contents,
 				Buffer.from(comment),
