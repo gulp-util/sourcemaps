@@ -9,10 +9,14 @@ import convert from "convert-source-map";
 import stripBom from "strip-bom-string";
 import fs from "graceful-fs";
 import path from "path";
-import { Options, Sources } from "../types";
+import { InitOptions, Sources } from "../types";
 import type File from "vinyl";
 
-export default function (options: Options, file: File, fileContent: string) {
+export default function (
+	options: InitOptions,
+	file: File,
+	fileContent: string
+) {
 	function loadMaps() {
 		const sources: Sources = {
 			path: "",

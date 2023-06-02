@@ -6,13 +6,13 @@ import { SourceMapGenerator, Mapping } from "source-map";
 import css from "css-tree";
 import initInternals from "./index.internals";
 import _debug from "../debug";
-import { Options } from "../types";
+import { InitOptions } from "../types";
 import type File from "vinyl";
 
 /**
  * Initialize source mapping chain
  */
-function init(options: Options) {
+function init(options: InitOptions) {
 	const debug = _debug.spawn("init");
 
 	function sourceMapInit(

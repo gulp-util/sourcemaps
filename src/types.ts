@@ -22,11 +22,14 @@ type SourceMapMapper = {
 	(sourcePath: string, file: File): string;
 };
 
-type Options = Partial<{
+type InitOptions = Partial<{
 	loadMaps: boolean;
 	largeFile: boolean;
-	addComment: boolean;
 	identityMap: boolean;
+}>;
+
+type WriteOptions = Partial<{
+	addComment: boolean;
 	includeContent: boolean;
 	mapSourcesAbsolute: boolean;
 	charset: string;
@@ -46,4 +49,4 @@ type Sources = {
 	preExistingComment: string | null;
 };
 
-export { Sources, Options };
+export { Sources, InitOptions, WriteOptions };
