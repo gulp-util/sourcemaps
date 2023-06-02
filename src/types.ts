@@ -1,26 +1,18 @@
 import type { SourceMapConverter } from "convert-source-map";
 import type File from "vinyl";
 
-type WriteMapper = {
-	(file: File): string;
-};
+type WriteMapper = (file: File) => string;
 
-type SourceUrlMapper = {
-	(file: File): string;
-};
+type SourceUrlMapper = (file: File) => string;
 
-type MapFilenameMapper = {
-	(mapFilePath: string): string;
-};
+type MapFilenameMapper = (mapFilePath: string) => string;
+
+type SourceMapMapper = (sourcePath: string, file: File) => string;
 
 type CloneOptions = Partial<{
 	contents: boolean;
 	deep: boolean;
 }>;
-
-type SourceMapMapper = {
-	(sourcePath: string, file: File): string;
-};
 
 interface InitOptions {
 	loadMaps?: boolean;
