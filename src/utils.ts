@@ -1,6 +1,7 @@
 import path from "path";
 import detectNewline from "detect-newline";
 import _debug from "./debug";
+import type File from "vinyl";
 
 function unixStylePath(filePath: string) {
 	return filePath.split(path.sep).join("/");
@@ -54,7 +55,7 @@ function resolveFormatter(extension: string) {
 	return commentFormatters.default;
 }
 
-function getCommentFormatter(file) {
+function getCommentFormatter(file: File) {
 	const extension = file.relative.split(".").pop();
 	const fileContents = file.contents.toString();
 	const newline = detectNewline.graceful(fileContents || "");

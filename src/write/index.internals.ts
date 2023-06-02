@@ -3,6 +3,7 @@ import fs from "graceful-fs";
 import path from "path";
 import stripBom = require("strip-bom-string");
 import _debug from "../debug";
+import type File from "vinyl";
 const rootDebug = _debug.spawn("write:internals");
 
 export default function internalsInit(destPath: string, options) {
@@ -13,7 +14,7 @@ export default function internalsInit(destPath: string, options) {
 		return options;
 	});
 
-	function setSourceRoot(file) {
+	function setSourceRoot(file: File) {
 		const debug = rootDebug.spawn("setSourceRoot");
 
 		const sourceMap = file.sourceMap;
@@ -36,7 +37,7 @@ export default function internalsInit(destPath: string, options) {
 		}
 	}
 
-	function mapSources(file) {
+	function mapSources(file: File) {
 		const debug = rootDebug.spawn("mapSources");
 
 		// NOTE: make sure source mapping happens after content has been loaded
@@ -99,7 +100,7 @@ export default function internalsInit(destPath: string, options) {
 		});
 	}
 
-	function loadContent(file) {
+	function loadContent(file: File) {
 		const debug = rootDebug.spawn("loadContent");
 
 		const sourceMap = file.sourceMap;
@@ -132,7 +133,7 @@ export default function internalsInit(destPath: string, options) {
 		}
 	}
 
-	function mapDestPath(file, stream) {
+	function mapDestPath(file: File, stream) {
 		const debug = rootDebug.spawn("mapDestPath");
 		const sourceMap = file.sourceMap;
 
