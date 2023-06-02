@@ -9,7 +9,7 @@ import _debug from "../debug";
  * @param options options to change the way the source map is written
  *
  */
-function write(destPath, options) {
+function write(destPath: string, options) {
 	const debug = _debug.spawn("write");
 
 	debug(function () {
@@ -52,7 +52,11 @@ function write(destPath, options) {
 
 	const internals = internalsInit(destPath, options);
 
-	function sourceMapWrite(file, encoding, callback) {
+	function sourceMapWrite(
+		file,
+		encoding: string,
+		callback: (error?: Error) => any
+	) {
 		if (file.isNull() || !file.sourceMap) {
 			this.push(file);
 			return callback();

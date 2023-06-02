@@ -10,7 +10,7 @@ import stripBom from "strip-bom-string";
 import fs from "graceful-fs";
 import path from "path";
 
-export default function (options, file, fileContent) {
+export default function (options, file, fileContent: string) {
 	function loadMaps() {
 		const sources = {
 			path: "",
@@ -36,7 +36,7 @@ export default function (options, file, fileContent) {
 		// fix source paths and sourceContent for imported source map
 		if (sources.map) {
 			sources.map.sourcesContent = sources.map.sourcesContent || [];
-			sources.map.sources.forEach(function (source, i) {
+			sources.map.sources.forEach(function (source: string, i: number) {
 				if (source.match(urlRegex)) {
 					sources.map.sourcesContent[i] =
 						sources.map.sourcesContent[i] || null;
@@ -123,7 +123,7 @@ export default function (options, file, fileContent) {
 		// look for source map comment referencing a source map file
 		const mapComment = convert.mapFileCommentRegex.exec(sources.content);
 
-		let mapFile;
+		let mapFile: string;
 		if (mapComment) {
 			sources.preExistingComment = mapComment[1] || mapComment[2];
 			mapFile = path.resolve(

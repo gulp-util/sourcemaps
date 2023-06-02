@@ -13,7 +13,11 @@ import _debug from "../debug";
 function init(options) {
 	const debug = _debug.spawn("init");
 
-	function sourceMapInit(file, encoding, callback) {
+	function sourceMapInit(
+		file,
+		encoding: string,
+		callback: (error?: Error) => any
+	) {
 		// pass through if file is null or already has a source map
 		if (file.isNull() || file.sourceMap) {
 			this.push(file);

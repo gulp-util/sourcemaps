@@ -1,7 +1,8 @@
 import path from "path";
 import detectNewline from "detect-newline";
 import _debug from "./debug";
-function unixStylePath(filePath) {
+
+function unixStylePath(filePath: string) {
 	return filePath.split(path.sep).join("/");
 }
 
@@ -21,10 +22,18 @@ function sourceMapUrlRegEx() {
 }
 
 const commentFormatters = {
-	css: function cssCommentFormatter(preLine, newline, url) {
+	css: function cssCommentFormatter(
+		preLine: string,
+		newline: string,
+		url: string
+	) {
 		return preLine + "/*# sourceMappingURL=" + url + " */" + newline;
 	},
-	js: function jsCommentFormatter(preLine, newline, url) {
+	js: function jsCommentFormatter(
+		preLine: string,
+		newline: string,
+		url: string
+	) {
 		return preLine + "//# sourceMappingURL=" + url + newline;
 	},
 	default: function defaultFormatter() {
@@ -66,7 +75,7 @@ function getCommentFormatter(file) {
 	return commentFormatter.bind(undefined, newline, newline);
 }
 
-function getInlinePreExisting(fileContent) {
+function getInlinePreExisting(fileContent: string) {
 	if (sourceMapUrlRegEx().test(fileContent)) {
 		debug(function () {
 			return "has preExisting";
@@ -75,7 +84,7 @@ function getInlinePreExisting(fileContent) {
 	}
 }
 
-function exceptionToString(exception) {
+function exceptionToString(exception: Error) {
 	return exception.message || "";
 }
 

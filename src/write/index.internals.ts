@@ -5,7 +5,7 @@ import stripBom = require("strip-bom-string");
 import _debug from "../debug";
 const rootDebug = _debug.spawn("write:internals");
 
-export default function internalsInit(destPath, options) {
+export default function internalsInit(destPath: string, options) {
 	rootDebug(function () {
 		return "options";
 	});
@@ -49,7 +49,7 @@ export default function internalsInit(destPath, options) {
 			});
 
 			file.sourceMap.sources = file.sourceMap.sources.map(function (
-				filePath
+				filePath: string
 			) {
 				return options.mapSources(filePath, file);
 			});
@@ -67,7 +67,7 @@ export default function internalsInit(destPath, options) {
 		});
 
 		file.sourceMap.sources = file.sourceMap.sources.map(function (
-			filePath
+			filePath: string
 		) {
 			// keep the references files like ../node_modules within the sourceRoot
 			debug(function () {
