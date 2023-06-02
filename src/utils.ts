@@ -22,6 +22,8 @@ function sourceMapUrlRegEx() {
 	return /\/\/# sourceMappingURL=.*/g;
 }
 
+type Formatter = (() => string) | ((url: string) => string);
+
 const commentFormatters = {
 	css: function cssCommentFormatter(
 		preLine: string,
@@ -55,7 +57,7 @@ function resolveFormatter(extension: string) {
 	return commentFormatters.default;
 }
 
-function getCommentFormatter(file: File) {
+function getCommentFormatter(file: File): Formatter {
 	const extension = file.relative.split(".").pop();
 	const fileContents = file.contents.toString();
 	const newline = detectNewline.graceful(fileContents || "");
