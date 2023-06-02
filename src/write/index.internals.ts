@@ -5,6 +5,7 @@ import stripBom = require("strip-bom-string");
 import _debug from "../debug";
 import { Options } from "../types";
 import type File from "vinyl";
+import { Transform } from "node:stream";
 const rootDebug = _debug.spawn("write:internals");
 
 export default function internalsInit(destPath: string, options: Options) {
@@ -134,7 +135,7 @@ export default function internalsInit(destPath: string, options: Options) {
 		}
 	}
 
-	function mapDestPath(file: File, stream) {
+	function mapDestPath(file: File, stream: Transform) {
 		const debug = rootDebug.spawn("mapDestPath");
 		const sourceMap = file.sourceMap;
 
