@@ -2,7 +2,7 @@ import { unixStylePath, PLUGIN_NAME } from "../utils";
 import through = require("through2");
 import path from "path";
 import acorn from "acorn";
-import { SourceMapGenerator } from "source-map";
+import { SourceMapGenerator, Mapping } from "source-map";
 import css from "css-tree";
 import initInternals from "./index.internals";
 import _debug from "../debug";
@@ -70,7 +70,7 @@ function init(options: Options) {
 					if (token.type.label === "eof") {
 						break;
 					}
-					const mapping = {
+					const mapping: Mapping = {
 						original: token.loc.start,
 						generated: token.loc.start,
 						source: source,
