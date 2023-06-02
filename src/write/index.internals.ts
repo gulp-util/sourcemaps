@@ -225,6 +225,7 @@ export default function internalsInit(destPath: string, options: Options) {
 			sourceMapFile.path = sourceMapPath;
 			sourceMapFile.contents = Buffer.from(JSON.stringify(sourceMap));
 			sourceMapFile.stat = {
+				...sourceMapFile.stat,
 				isFile: function () {
 					return true;
 				},
