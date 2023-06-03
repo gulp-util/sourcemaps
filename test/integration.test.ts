@@ -26,7 +26,7 @@ const sourceContent = fs
 function base64JSON(object) {
 	return (
 		"data:application/json;charset=utf8;base64," +
-		new Buffer(JSON.stringify(object)).toString("base64")
+		Buffer.from(JSON.stringify(object)).toString("base64")
 	);
 }
 

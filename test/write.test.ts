@@ -47,7 +47,7 @@ function makeSourceMap(custom) {
 function base64JSON(object) {
 	return (
 		"data:application/json;charset=utf8;base64," +
-		new Buffer(JSON.stringify(object)).toString("base64")
+		Buffer.from(JSON.stringify(object)).toString("base64")
 	);
 }
 
@@ -56,7 +56,7 @@ function makeFile(custom) {
 		cwd: __dirname,
 		base: path.join(__dirname, "assets"),
 		path: path.join(__dirname, "assets", "helloworld.js"),
-		contents: new Buffer(sourceContent),
+		contents: Buffer.from(sourceContent),
 	});
 	file.sourceMap = makeSourceMap(custom);
 	return file;
@@ -67,7 +67,7 @@ function makeMappedFile() {
 		cwd: __dirname,
 		base: path.join(__dirname, "assets"),
 		path: path.join(__dirname, "assets", "helloworld.map.js"),
-		contents: new Buffer(mappedContent),
+		contents: Buffer.from(mappedContent),
 	});
 	file.sourceMap = makeSourceMap({
 		preExistingComment: utils.getInlinePreExisting(mappedContent),
@@ -80,7 +80,7 @@ function makeNestedFile() {
 		cwd: __dirname,
 		base: path.join(__dirname, "assets"),
 		path: path.join(__dirname, "assets", "dir1", "dir2", "helloworld.js"),
-		contents: new Buffer(sourceContent),
+		contents: Buffer.from(sourceContent),
 	});
 	file.sourceMap = makeSourceMap();
 	return file;
@@ -186,7 +186,7 @@ describe("write", function () {
 
 	it("should detect whether a file uses \\n or \\r\\n and follow the existing style", function (done) {
 		const file = makeFile();
-		file.contents = new Buffer(
+		file.contents = Buffer.from(
 			file.contents.toString().replace(/\n/g, "\r\n")
 		);
 
@@ -205,7 +205,7 @@ describe("write", function () {
 
 	it("preExistingComment", function (done) {
 		const file = makeMappedFile();
-		file.contents = new Buffer(
+		file.contents = Buffer.from(
 			convert.removeComments(file.contents.toString())
 		);
 

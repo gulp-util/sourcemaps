@@ -16,14 +16,12 @@ function makeFile() {
 		cwd: __dirname,
 		base: path.join(__dirname, "assets"),
 		path: path.join(__dirname, "assets", "helloworld.js"),
-		contents: Buffer.from
-			? Buffer.from(sourceContent)
-			: new Buffer(sourceContent),
+		contents: Buffer.from(sourceContent),
 	});
 }
 
 function makeNullFile() {
-	const junkBuffer = new Buffer([]);
+	const junkBuffer = Buffer.from([]);
 	junkBuffer.toString = function () {
 		return null;
 	};
@@ -53,7 +51,7 @@ function makeFileWithInlineSourceMap() {
 		cwd: __dirname,
 		base: path.join(__dirname, "assets"),
 		path: path.join(__dirname, "assets", "all.js"),
-		contents: Buffer.from ? Buffer.from(contents) : new Buffer(contents),
+		contents: Buffer.from(contents),
 	});
 }
 
@@ -62,9 +60,7 @@ function makeFileCSS() {
 		cwd: __dirname,
 		base: path.join(__dirname, "assets"),
 		path: path.join(__dirname, "assets", "test.css"),
-		contents: Buffer.from
-			? Buffer.from(sourceContentCSS)
-			: new Buffer(sourceContentCSS),
+		contents: Buffer.from(sourceContentCSS),
 	});
 }
 
