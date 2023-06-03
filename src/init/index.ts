@@ -1,7 +1,7 @@
 import { unixStylePath, PLUGIN_NAME } from "../utils";
 import through = require("through2");
 import path from "path";
-import acorn from "acorn";
+import acorn = require("acorn");
 import { SourceMapGenerator, Mapping } from "source-map";
 import css from "css-tree";
 import initInternals from "./index.internals";
