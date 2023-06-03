@@ -11,7 +11,7 @@ import type File from "vinyl";
  * @param options options to change the way the source map is written
  *
  */
-function write(destPath: string, options: WriteOptions) {
+function write(destPath?: string, options?: WriteOptions) {
 	const debug = _debug.spawn("write");
 
 	debug(function () {

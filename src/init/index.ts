@@ -12,7 +12,7 @@ import type File from "vinyl";
 /**
  * Initialize source mapping chain
  */
-function init(options: InitOptions) {
+function init(options?: InitOptions) {
 	const debug = _debug.spawn("init");
 
 	function sourceMapInit(
