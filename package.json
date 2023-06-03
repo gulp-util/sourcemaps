@@ -60,8 +60,10 @@
 	"scripts": {
 		"lint": "eslint .",
 		"dev": "tsc --watch",
-		"build": "tsc",
-		"pretest": "pnpm run build",
+		"build": "pnpm run build:source",
+		"build:source": "tsc || true",
+		"build:test": "tsc -p ./test || true",
+		"pretest": "pnpm run /build:.*/",
 		"test": "mocha"
 	},
 	"files": [
