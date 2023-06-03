@@ -27,11 +27,11 @@ const mappedContent = fs
 	.readFileSync(path.join(__dirname, "assets/helloworld.map.js"))
 	.toString();
 
-function makeSourceMap(custom) {
+function makeSourceMap(custom?: object) {
 	const obj = {
 		version: 3,
 		file: "helloworld.js",
-		names: [],
+		names: <string[]>[],
 		mappings: "",
 		sources: ["helloworld.js"],
 		sourcesContent: [sourceContent],
@@ -44,14 +44,14 @@ function makeSourceMap(custom) {
 	return obj;
 }
 
-function base64JSON(object) {
+function base64JSON(object: object) {
 	return (
 		"data:application/json;charset=utf8;base64," +
 		Buffer.from(JSON.stringify(object)).toString("base64")
 	);
 }
 
-function makeFile(custom) {
+function makeFile(custom?: object) {
 	const file = new File({
 		cwd: __dirname,
 		base: path.join(__dirname, "assets"),
@@ -130,10 +130,13 @@ describe("write", function () {
 	it("should emit an error if file content is a stream", function (done) {
 		const file = makeStreamFile();
 
-		pipe([from.obj([file]), sourcemaps.write(), concat()], function (err) {
-			expect(err).toExist();
-			done();
-		});
+		pipe(
+			[from.obj([file]), sourcemaps.write(), concat()],
+			function (err: Error) {
+				expect(err).toExist();
+				done();
+			}
+		);
 	});
 
 	it("should write an inline source map", function (done) {
@@ -253,7 +256,8 @@ describe("write", function () {
 			expect(mapFile.path).toEqual(
 				path.join(__dirname, "maps/helloworld.js.map")
 			);
-			expect(JSON.parse(mapFile.contents)).toEqual(dataFile.sourceMap);
+			const mapFileContents = JSON.parse(mapFile.contents.toString());
+			expect(mapFileContents).toEqual(dataFile.sourceMap);
 			expect(mapFile.stat.isFile()).toEqual(true);
 			expect(mapFile.stat.isDirectory()).toEqual(false);
 			expect(mapFile.stat.isBlockDevice()).toEqual(false);
@@ -317,7 +321,8 @@ describe("write", function () {
 			expect(mapFile.path).toEqual(
 				path.join(__dirname, "maps/helloworld.map")
 			);
-			expect(JSON.parse(mapFile.contents)).toEqual(dataFile.sourceMap);
+			const mapFileContents = JSON.parse(mapFile.contents.toString());
+			expect(mapFileContents).toEqual(dataFile.sourceMap);
 		}
 
 		pipe(
