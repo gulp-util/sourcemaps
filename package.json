@@ -53,7 +53,6 @@
 		"istanbul-coveralls": "^1.0.3",
 		"mississippi": "1.X",
 		"mocha": "^10.2.0",
-		"object-assign": "^4.1.1",
 		"rimraf": "^2.6.3",
 		"typescript": "^5.0.4",
 		"vinyl": "^2.2.0"

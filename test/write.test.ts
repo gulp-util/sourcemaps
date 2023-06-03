@@ -16,7 +16,7 @@ if (!ignoreLogTests) {
 	debug.save("gulp-sourcemaps:*");
 	debug.enable(debug.load());
 }
-import assign from "object-assign";
+
 import utils = require("../lib/utils");
 import convert from "convert-source-map";
 
@@ -38,7 +38,7 @@ function makeSourceMap(custom) {
 	};
 
 	if (custom) {
-		assign(obj, custom);
+		Object.assign(obj, custom);
 	}
 
 	return obj;
