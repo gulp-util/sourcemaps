@@ -13,7 +13,7 @@ const debug = _debug();
 const ignoreLogTests = process.argv.indexOf("--ignore-log-tests") !== -1;
 
 if (!ignoreLogTests) {
-	debug.save("gulp-sourcemaps:*");
+	debug.save("sourcemaps:*");
 	debug.enable(debug.load());
 }
 
