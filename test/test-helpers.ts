@@ -1,7 +1,7 @@
-const fs = require("fs");
-const path = require("path");
-const File = require("vinyl");
-const ReadableStream = require("stream").Readable;
+import fs from "fs";
+import path from "path";
+import File from "vinyl";
+import { Readable as ReadableStream } from "stream";
 
 const sourceContent = fs
 	.readFileSync(path.join(__dirname, "assets/helloworld.js"))
@@ -68,12 +68,12 @@ function makeFileCSS() {
 	});
 }
 
-module.exports = {
-	sourceContent: sourceContent,
-	sourceContentCSS: sourceContentCSS,
-	makeFile: makeFile,
-	makeFileCSS: makeFileCSS,
-	makeNullFile: makeNullFile,
-	makeStreamFile: makeStreamFile,
-	makeFileWithInlineSourceMap: makeFileWithInlineSourceMap,
+export {
+	sourceContent,
+	sourceContentCSS,
+	makeFile,
+	makeFileCSS,
+	makeNullFile,
+	makeStreamFile,
+	makeFileWithInlineSourceMap,
 };

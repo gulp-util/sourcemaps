@@ -1,16 +1,14 @@
-const expect = require("expect");
-const sourcemaps = require("..");
-const File = require("vinyl");
-const ReadableStream = require("stream").Readable;
-const path = require("path");
-const fs = require("fs");
-const hookStd = require("hook-std");
-const debug = require("debug-fabulous")();
-const miss = require("mississippi");
+import expect from "expect";
+import sourcemaps = require("..");
+import File from "vinyl";
+import { Readable as ReadableStream } from "stream";
+import path from "path";
+import fs from "fs";
+import hookStd from "hook-std";
+import _debug from "debug-fabulous";
+import { from, pipe, concat } from "mississippi";
 
-const from = miss.from;
-const pipe = miss.pipe;
-const concat = miss.concat;
+const debug = _debug();
 
 const ignoreLogTests = process.argv.indexOf("--ignore-log-tests") !== -1;
 
@@ -18,9 +16,9 @@ if (!ignoreLogTests) {
 	debug.save("gulp-sourcemaps:*");
 	debug.enable(debug.load());
 }
-const assign = require("object-assign");
-const utils = require("../lib/utils");
-const convert = require("convert-source-map");
+import assign from "object-assign";
+import utils = require("../lib/utils");
+import convert from "convert-source-map";
 
 const sourceContent = fs
 	.readFileSync(path.join(__dirname, "assets/helloworld.js"))

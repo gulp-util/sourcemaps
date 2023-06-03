@@ -1,13 +1,15 @@
-const expect = require("expect");
-const gulp = require("gulp");
-const $ = require("gulp-load-plugins")();
-const sourcemaps = require("..");
-const debug = require("debug-fabulous")();
-const miss = require("mississippi");
-const rimraf = require("rimraf");
+import expect from "expect";
+import gulp from "gulp";
+import gulpLoad from "gulp-load-plugins";
+import sourcemaps = require("..");
+import _debug from "debug-fabulous";
+import { pipe, concat } from "mississippi";
+import { join } from "path";
+import rimraf from "rimraf";
+import fs from "fs";
 
-const pipe = miss.pipe;
-const concat = miss.concat;
+const debug = _debug();
+const $ = gulpLoad();
 
 const ignoreLogTests = process.argv.indexOf("--ignore-log-tests") !== -1;
 
@@ -15,8 +17,7 @@ if (!ignoreLogTests) {
 	debug.save("gulp-sourcemaps:*");
 	debug.enable(debug.load());
 }
-const join = require("path").join;
-const fs = require("fs");
+
 const sourceContent = fs
 	.readFileSync(join(__dirname, "assets/helloworld.js"))
 	.toString();

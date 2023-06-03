@@ -1,11 +1,9 @@
-const expect = require("expect");
+import expect from "expect";
 // BEGIN PRE-HOOK of debug
-const debug = require("debug-fabulous")();
-const miss = require("mississippi");
+import _debug from "debug-fabulous";
+import { from, pipe, concat } from "mississippi";
 
-const from = miss.from;
-const pipe = miss.pipe;
-const concat = miss.concat;
+const debug = _debug();
 
 const ignoreLogTests = process.argv.indexOf("--ignore-log-tests") !== -1;
 
@@ -14,10 +12,10 @@ if (!ignoreLogTests) {
 	debug.enable(debug.load());
 }
 // END PRE-HOOK of debug (must be loaded before our main module (sourcemaps))
-const sourcemaps = require("..");
-const File = require("vinyl");
-const hookStd = require("hook-std");
-const helpers = require("./test-helpers");
+import sourcemaps = require("..");
+import File from "vinyl";
+import hookStd from "hook-std";
+import * as helpers from "./test-helpers";
 
 describe("init", function () {
 	it("should pass through when file is null", function (done) {
