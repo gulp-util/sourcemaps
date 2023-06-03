@@ -136,7 +136,7 @@ describe("integrations", function () {
 				),
 				sourcemaps.init(),
 				$.if("*.js", $.concat("index.js")),
-				sourcemaps.write({ sourceRoot: "../../test/assets" }),
+				sourcemaps.write(null, { sourceRoot: "../../test/assets" }),
 				concat(assert),
 			],
 			done
@@ -156,7 +156,7 @@ describe("integrations", function () {
 				gulp.src("assets/*.less", { cwd: __dirname }),
 				sourcemaps.init(),
 				$.if("*.less", $.less()),
-				sourcemaps.write({ sourceRoot: "../../test/assets" }),
+				sourcemaps.write(null, { sourceRoot: "../../test/assets" }),
 				concat(),
 			],
 			done
@@ -223,7 +223,7 @@ describe("integrations", function () {
 				),
 				sourcemaps.init({ loadMaps: true }),
 				$.if("*.js", $.concat("index.js")),
-				sourcemaps.write({ sourceRoot: "../../test/assets" }),
+				sourcemaps.write(null, { sourceRoot: "../../test/assets" }),
 				concat(assert),
 			],
 			done

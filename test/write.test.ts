@@ -224,7 +224,7 @@ describe("write", function () {
 		pipe(
 			[
 				from.obj([file]),
-				sourcemaps.write({ preExistingComment: true }),
+				sourcemaps.write(null, { preExistingComment: true }),
 				concat(assert),
 			],
 			done
@@ -366,7 +366,7 @@ describe("write", function () {
 		pipe(
 			[
 				from.obj([file]),
-				sourcemaps.write({ addComment: false }),
+				sourcemaps.write(null, { addComment: false }),
 				concat(assert),
 			],
 			done
@@ -384,7 +384,7 @@ describe("write", function () {
 		pipe(
 			[
 				from.obj([file]),
-				sourcemaps.write({ includeContent: false }),
+				sourcemaps.write(null, { includeContent: false }),
 				concat(assert),
 			],
 			done
@@ -430,7 +430,7 @@ describe("write", function () {
 		pipe(
 			[
 				from.obj([file]),
-				sourcemaps.write({ sourceRoot: "/testSourceRoot" }),
+				sourcemaps.write(null, { sourceRoot: "/testSourceRoot" }),
 				concat(assert),
 			],
 			done
@@ -449,7 +449,7 @@ describe("write", function () {
 		pipe(
 			[
 				from.obj([file]),
-				sourcemaps.write({
+				sourcemaps.write(null, {
 					sourceRoot: "/testSourceRoot",
 					mapSourcesAbsolute: true,
 				}),
@@ -470,7 +470,7 @@ describe("write", function () {
 		pipe(
 			[
 				from.obj([file]),
-				sourcemaps.write({
+				sourcemaps.write(null, {
 					sourceRoot: function () {
 						return "/testSourceRoot";
 					},
@@ -718,7 +718,7 @@ describe("write", function () {
 		pipe(
 			[
 				from.obj([file]),
-				sourcemaps.write({ sourceRoot: null }),
+				sourcemaps.write(null, { sourceRoot: null }),
 				concat(assert),
 			],
 			done
@@ -736,7 +736,7 @@ describe("write", function () {
 		pipe(
 			[
 				from.obj([file]),
-				sourcemaps.write({
+				sourcemaps.write(null, {
 					sourceRoot: function () {
 						return null;
 					},
@@ -758,7 +758,7 @@ describe("write", function () {
 		pipe(
 			[
 				from.obj([file]),
-				sourcemaps.write({ sourceRoot: "" }),
+				sourcemaps.write(null, { sourceRoot: "" }),
 				concat(assert),
 			],
 			done
@@ -805,7 +805,7 @@ describe("write", function () {
 		pipe(
 			[
 				from.obj([file]),
-				sourcemaps.write({
+				sourcemaps.write(null, {
 					mapSources: function (sourcePath: string, f: File) {
 						expect(file).toEqual(f);
 						return "../src/" + sourcePath;
