@@ -14,7 +14,7 @@ if (!ignoreLogTests) {
 // END PRE-HOOK of debug (must be loaded before our main module (sourcemaps))
 import sourcemaps = require("..");
 import File from "vinyl";
-import hookStd from "hook-std";
+import { stderr as hookStderr } from "hook-std";
 import * as helpers from "./test-helpers";
 
 describe("init", function () {
@@ -600,12 +600,12 @@ describe("init", function () {
 
 			const history: string[] = [];
 
-			const unhook = hookStd.stderr(function (s: string) {
+			const hook = hookStderr(function (s: string) {
 				history.push(s);
 			});
 
 			function assert() {
-				unhook();
+				hook.unhook();
 				const hasRegex = function (regex: RegExp) {
 					return function (s: string) {
 						return regex.test(s);
@@ -643,12 +643,12 @@ describe("init", function () {
 
 			const history: string[] = [];
 
-			const unhook = hookStd.stderr(function (s: string) {
+			const hook = hookStderr(function (s: string) {
 				history.push(s);
 			});
 
 			function assert() {
-				unhook();
+				hook.unhook();
 				const hasRegex = function (regex: RegExp) {
 					return function (s: string) {
 						return regex.test(s);

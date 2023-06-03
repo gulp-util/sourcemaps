@@ -4,7 +4,7 @@ import File from "vinyl";
 import { Readable as ReadableStream } from "stream";
 import path from "path";
 import fs from "fs";
-import hookStd from "hook-std";
+import { stderr as hookStderr } from "hook-std";
 import _debug from "debug-fabulous";
 import { from, pipe, concat } from "mississippi";
 
@@ -848,12 +848,12 @@ describe("write", function () {
 
 			const history: string[] = [];
 
-			const unhook = hookStd.stderr(function (s: string) {
+			const hook = hookStderr(function (s: string) {
 				history.push(s);
 			});
 
-			function assert() {
-				unhook();
+			async function assert() {
+				hook.unhook();
 				const hasRegex = function (regex: RegExp) {
 					return function (s: string) {
 						return regex.test(s);

@@ -27,7 +27,7 @@ specifiers:
   gulp-if: ^2.0.2
   gulp-less: ^3.0.0
   gulp-load-plugins: ^1.5.0
-  hook-std: 0.2.X
+  hook-std: ~2.0.0
   istanbul: ^0.4.3
   istanbul-coveralls: ^1.0.3
   mississippi: 1.X
@@ -71,7 +71,7 @@ devDependencies:
   gulp-if: 2.0.2
   gulp-less: 3.5.0
   gulp-load-plugins: 1.6.0
-  hook-std: 0.2.0
+  hook-std: 2.0.0
   istanbul: 0.4.5
   istanbul-coveralls: 1.0.3
   mississippi: 1.3.1
@@ -2422,9 +2422,9 @@ packages:
       parse-passwd: 1.0.0
     dev: true
 
-  /hook-std/0.2.0:
-    resolution: {integrity: sha512-rcuIChdlZ4zjRNyIwhkZTpnBzWerONVxyJNyP5hJacfXo7cXCrhbk5KFOx8XIrob7JC+reHaDnPpo+lpF/07eg==}
-    engines: {node: '>=0.10.0'}
+  /hook-std/2.0.0:
+    resolution: {integrity: sha512-zZ6T5WcuBMIUVh49iPQS9t977t7C0l7OtHrpeMb5uk48JdflRX0NSFvCekfYNmGQETnLq9W/isMyHl69kxGi8g==}
+    engines: {node: '>=8'}
     dev: true
 
   /hosted-git-info/2.8.9:
