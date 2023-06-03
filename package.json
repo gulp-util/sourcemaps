@@ -61,6 +61,9 @@
 		"typescript": "^5.0.4",
 		"vinyl": "^2.2.0"
 	},
+	"optionalDependencies": {
+		"ts-node": "^10.9.1"
+	},
 	"scripts": {
 		"lint": "eslint .",
 		"dev": "tsc --watch",
