@@ -7,6 +7,7 @@ import { pipe, concat } from "mississippi";
 import { join } from "path";
 import rimraf from "rimraf";
 import fs from "fs";
+import type File from "vinyl";
 
 const debug = _debug();
 const $ = gulpLoad();
@@ -37,7 +38,7 @@ describe("integrations", function () {
 	});
 
 	it("combined: creates inline mapping", function (done) {
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(data.contents.toString()).toEqual(
@@ -60,7 +61,7 @@ describe("integrations", function () {
 	});
 
 	it("combined: creates preExistingComment , no new previous line", function (done) {
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(data.sourceMap.preExistingComment).toExist();
@@ -84,7 +85,7 @@ describe("integrations", function () {
 	});
 
 	it("combined mapped: concat files with final combined sourcemap file", function (done) {
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[1];
 			// TODO: This might be flakey since it grabs index 1 from results
 			expect(/index\.js$/.test(data.path)).toEqual(true);
@@ -114,7 +115,7 @@ describe("integrations", function () {
 	});
 
 	it("combined: inline concatenated file", function (done) {
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(/index\.js$/.test(data.path)).toEqual(true);
 			expect(
@@ -163,7 +164,7 @@ describe("integrations", function () {
 	});
 
 	it("combined: mapped preExisting", function (done) {
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[1];
 			// TODO: This might be flakey since it grabs index 1 from results
 			expect(/index\.js$/.test(data.path)).toEqual(true);
@@ -197,7 +198,7 @@ describe("integrations", function () {
 	});
 
 	it("combined: inlined preExisting", function (done) {
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(/index\.js$/.test(data.path)).toEqual(true);
 			expect(
@@ -230,7 +231,7 @@ describe("integrations", function () {
 	});
 
 	it("combined: mapped preExisting with two tasks", function (done) {
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[1];
 			// TODO: This might be flakey since it grabs index 1 from results
 			expect(/index\.js$/.test(data.path)).toEqual(true);
@@ -282,13 +283,13 @@ describe("integrations", function () {
 
 	// - thanks @twiggy https://github.com/gulp-sourcemaps/gulp-sourcemaps/issues/270#issuecomment-271723208
 	it("sources: is valid with concat", function (done) {
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			// TODO: This might be flakey since it grabs index 0 from results
 			expect(/.*\.map/.test(data.path)).toEqual(true);
 
 			const contents = JSON.parse(data.contents.toString());
-			contents.sources.forEach(function (s, i) {
+			contents.sources.forEach(function (s: string, i: number) {
 				expect(s).toEqual("test" + (i + 3) + ".js");
 			});
 		}
@@ -309,13 +310,13 @@ describe("integrations", function () {
 
 	// - thanks @twiggy https://github.com/gulp-sourcemaps/gulp-sourcemaps/issues/270#issuecomment-271723208
 	it("sources: mapSourcesAbsolute: is valid with concat", function (done) {
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			// TODO: This might be flakey since it grabs index 0 from results
 			expect(/.*\.map/.test(data.path)).toEqual(true);
 
 			const contents = JSON.parse(data.contents.toString());
-			contents.sources.forEach(function (s, i) {
+			contents.sources.forEach(function (s: string, i: number) {
 				expect(s).toEqual("/test/assets/test" + (i + 3) + ".js");
 			});
 		}

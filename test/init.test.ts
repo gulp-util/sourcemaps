@@ -22,7 +22,7 @@ describe("init", function () {
 		// end inner conflict
 		const file = new File();
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data).toExist();
 			expect(data instanceof File).toEqual(true);
@@ -48,7 +48,7 @@ describe("init", function () {
 	it("should add an empty source map", function (done) {
 		const file = helpers.makeFile();
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data).toExist();
 			expect(data instanceof File).toEqual(true);
@@ -68,7 +68,7 @@ describe("init", function () {
 	it("should add a valid source map if wished", function (done) {
 		const file = helpers.makeFile();
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data).toExist();
 			expect(data instanceof File).toEqual(true);
@@ -101,7 +101,7 @@ describe("init", function () {
 	it("should add a valid source map for css if wished", function (done) {
 		const file = helpers.makeFileCSS();
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data).toExist();
 			expect(data instanceof File).toEqual(true);
@@ -128,7 +128,7 @@ describe("init", function () {
 	it("init: can replace `identityMap` option with sourcemap.identityMap stream (js file)", function (done) {
 		const file = helpers.makeFile();
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data).toExist();
 			expect(data instanceof File).toEqual(true);
@@ -162,7 +162,7 @@ describe("init", function () {
 	it("can replace `identityMap` option with sourcemap.identityMap stream (css file)", function (done) {
 		const file = helpers.makeFileCSS();
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data).toExist();
 			expect(data instanceof File).toEqual(true);
@@ -192,7 +192,7 @@ describe("init", function () {
 	it("should import an existing inline source map", function (done) {
 		const file = helpers.makeFileWithInlineSourceMap();
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data).toExist();
 			expect(data instanceof File).toEqual(true);
@@ -227,7 +227,7 @@ describe("init", function () {
 			helpers.sourceContent + "\n//# sourceMappingURL=helloworld2.js.map"
 		);
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(String(data.sourceMap.version)).toEqual("3");
@@ -254,7 +254,7 @@ describe("init", function () {
 			helpers.sourceContentCSS + "\n/*# sourceMappingURL=test.css.map */"
 		);
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(String(data.sourceMap.version)).toEqual("3");
@@ -281,7 +281,7 @@ describe("init", function () {
 			helpers.sourceContent + "\n//# sourceMappingURL=helloworld2.js.map"
 		);
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(/sourceMappingURL/.test(data.contents.toString())).toEqual(
 				false
@@ -304,7 +304,7 @@ describe("init", function () {
 			helpers.sourceContentCSS + "\n/*# sourceMappingURL=test.css.map */"
 		);
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			const actualContents = data.contents.toString();
 			expect(/sourceMappingURL/.test(actualContents)).toEqual(false);
@@ -327,7 +327,7 @@ describe("init", function () {
 				"\n/*# sourceMappingURL=helloworld2.js.map */"
 		);
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(String(data.sourceMap.version)).toEqual("3");
@@ -355,7 +355,7 @@ describe("init", function () {
 				"\n/*# sourceMappingURL=helloworld2.js.map */"
 		);
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(/sourceMappingURL/.test(data.contents.toString())).toEqual(
 				false
@@ -376,7 +376,7 @@ describe("init", function () {
 		const file = helpers.makeFile();
 		file.path = file.path.replace("helloworld.js", "helloworld2.js");
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(String(data.sourceMap.version)).toEqual("3");
@@ -403,7 +403,7 @@ describe("init", function () {
 			helpers.sourceContent + "\n//# sourceMappingURL=helloworld3.js.map"
 		);
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(String(data.sourceMap.version)).toEqual("3");
@@ -434,7 +434,7 @@ describe("init", function () {
 			helpers.sourceContent + "\n//# sourceMappingURL=helloworld4.js.map"
 		);
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(String(data.sourceMap.version)).toEqual("3");
@@ -465,7 +465,7 @@ describe("init", function () {
 		const file = helpers.makeFile();
 		file.base = file.cwd;
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data.sourceMap.file).toEqual("assets/helloworld.js");
 			expect(data.sourceMap.sources).toEqual(["assets/helloworld.js"]);
@@ -480,7 +480,7 @@ describe("init", function () {
 			helpers.sourceContent + "\n//# sourceMappingURL=helloworld5.js.map"
 		);
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(String(data.sourceMap.version)).toEqual("3");
@@ -512,7 +512,7 @@ describe("init", function () {
 			helpers.sourceContent + "\n//# sourceMappingURL=helloworld6.js.map"
 		);
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(String(data.sourceMap.version)).toEqual("3");
@@ -537,7 +537,7 @@ describe("init", function () {
 	it("should pass through when file already has a source map", function (done) {
 		const sourceMap = {
 			version: 3,
-			names: [],
+			names: <string[]>[],
 			mappings: "",
 			sources: ["test.js"],
 			sourcesContent: ["testContent"],
@@ -546,7 +546,7 @@ describe("init", function () {
 		const file = helpers.makeFile();
 		file.sourceMap = sourceMap;
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data).toExist();
 			expect(data instanceof File).toEqual(true);
@@ -567,7 +567,7 @@ describe("init", function () {
 	it("handle null contents", function (done) {
 		const file = helpers.makeNullFile();
 
-		function assert(results) {
+		function assert(results: File[]) {
 			const data = results[0];
 			expect(data).toExist();
 			expect(data instanceof File).toEqual(true);
@@ -598,16 +598,16 @@ describe("init", function () {
 					"\n//# sourceMappingURL=helloworld4.js.map"
 			);
 
-			const history = [];
+			const history: string[] = [];
 
-			const unhook = hookStd.stderr(function (s) {
+			const unhook = hookStd.stderr(function (s: string) {
 				history.push(s);
 			});
 
 			function assert() {
 				unhook();
-				const hasRegex = function (regex) {
-					return function (s) {
+				const hasRegex = function (regex: RegExp) {
+					return function (s: string) {
 						return regex.test(s);
 					};
 				};
@@ -641,16 +641,16 @@ describe("init", function () {
 					"\n//# sourceMappingURL=not-existent.js.map"
 			);
 
-			const history = [];
+			const history: string[] = [];
 
-			const unhook = hookStd.stderr(function (s) {
+			const unhook = hookStd.stderr(function (s: string) {
 				history.push(s);
 			});
 
 			function assert() {
 				unhook();
-				const hasRegex = function (regex) {
-					return function (s) {
+				const hasRegex = function (regex: RegExp) {
+					return function (s: string) {
 						return regex.test(s);
 					};
 				};
