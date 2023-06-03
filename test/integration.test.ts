@@ -1,5 +1,3 @@
-"use strict";
-
 const expect = require("expect");
 const gulp = require("gulp");
 const $ = require("gulp-load-plugins")();

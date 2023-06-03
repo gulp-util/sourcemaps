@@ -1,5 +1,3 @@
-"use strict";
-
 const expect = require("expect");
 // BEGIN PRE-HOOK of debug
 const debug = require("debug-fabulous")();

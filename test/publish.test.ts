@@ -1,5 +1,3 @@
-"use strict";
-
 const os = require("os");
 const exec = require("child_process").exec;
 const rimraf = require("rimraf");

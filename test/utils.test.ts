@@ -1,5 +1,3 @@
-"use strict";
-
 const expect = require("expect");
 const utils = require("../lib/utils");
 

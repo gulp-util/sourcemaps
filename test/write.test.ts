@@ -1,5 +1,3 @@
-"use strict";
-
 const expect = require("expect");
 const sourcemaps = require("..");
 const File = require("vinyl");
