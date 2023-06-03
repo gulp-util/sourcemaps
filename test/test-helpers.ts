@@ -1,15 +1,15 @@
 "use strict";
 
-var fs = require("fs");
-var path = require("path");
-var File = require("vinyl");
-var ReadableStream = require("stream").Readable;
+const fs = require("fs");
+const path = require("path");
+const File = require("vinyl");
+const ReadableStream = require("stream").Readable;
 
-var sourceContent = fs
+const sourceContent = fs
 	.readFileSync(path.join(__dirname, "assets/helloworld.js"))
 	.toString();
 
-var sourceContentCSS = fs
+const sourceContentCSS = fs
 	.readFileSync(path.join(__dirname, "assets/test.css"))
 	.toString();
 
@@ -25,7 +25,7 @@ function makeFile() {
 }
 
 function makeNullFile() {
-	var junkBuffer = new Buffer([]);
+	const junkBuffer = new Buffer([]);
 	junkBuffer.toString = function () {
 		return null;
 	};
@@ -48,7 +48,7 @@ function makeStreamFile() {
 }
 
 function makeFileWithInlineSourceMap() {
-	var contents =
+	const contents =
 		'console.log("line 1.1"),console.log("line 1.2"),console.log("line 2.1"),console.log("line 2.2");\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYWxsLmpzIiwic291cmNlcyI6WyJ0ZXN0MS5qcyIsInRlc3QyLmpzIl0sIm5hbWVzIjpbImNvbnNvbGUiLCJsb2ciXSwibWFwcGluZ3MiOiJBQUFBQSxRQUFBQyxJQUFBLFlBQ0FELFFBQUFDLElBQUEsWUNEQUQsUUFBQUMsSUFBQSxZQUNBRCxRQUFBQyxJQUFBIiwic291cmNlc0NvbnRlbnQiOlsiY29uc29sZS5sb2coJ2xpbmUgMS4xJyk7XG5jb25zb2xlLmxvZygnbGluZSAxLjInKTtcbiIsImNvbnNvbGUubG9nKCdsaW5lIDIuMScpO1xuY29uc29sZS5sb2coJ2xpbmUgMi4yJyk7Il0sInNvdXJjZVJvb3QiOiIvc291cmNlLyJ9';
 
 	return new File({

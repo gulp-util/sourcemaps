@@ -1,10 +1,10 @@
 "use strict";
 
-var os = require("os");
-var exec = require("child_process").exec;
-var rimraf = require("rimraf");
+const os = require("os");
+const exec = require("child_process").exec;
+const rimraf = require("rimraf");
 
-var isWindows = os.platform() === "win32";
+const isWindows = os.platform() === "win32";
 
 function cleanUp(cb) {
 	rimraf("./tmp", cb);

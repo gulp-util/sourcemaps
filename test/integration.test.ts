@@ -1,25 +1,25 @@
 "use strict";
 
-var expect = require("expect");
-var gulp = require("gulp");
-var $ = require("gulp-load-plugins")();
-var sourcemaps = require("..");
-var debug = require("debug-fabulous")();
-var miss = require("mississippi");
-var rimraf = require("rimraf");
+const expect = require("expect");
+const gulp = require("gulp");
+const $ = require("gulp-load-plugins")();
+const sourcemaps = require("..");
+const debug = require("debug-fabulous")();
+const miss = require("mississippi");
+const rimraf = require("rimraf");
 
-var pipe = miss.pipe;
-var concat = miss.concat;
+const pipe = miss.pipe;
+const concat = miss.concat;
 
-var ignoreLogTests = process.argv.indexOf("--ignore-log-tests") !== -1;
+const ignoreLogTests = process.argv.indexOf("--ignore-log-tests") !== -1;
 
 if (!ignoreLogTests) {
 	debug.save("gulp-sourcemaps:*");
 	debug.enable(debug.load());
 }
-var join = require("path").join;
-var fs = require("fs");
-var sourceContent = fs
+const join = require("path").join;
+const fs = require("fs");
+const sourceContent = fs
 	.readFileSync(join(__dirname, "assets/helloworld.js"))
 	.toString();
 
@@ -39,7 +39,7 @@ describe("integrations", function () {
 
 	it("combined: creates inline mapping", function (done) {
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(data.contents.toString()).toEqual(
 				sourceContent +
@@ -62,7 +62,7 @@ describe("integrations", function () {
 
 	it("combined: creates preExistingComment , no new previous line", function (done) {
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(data.sourceMap.preExistingComment).toExist();
 			expect(data.contents.toString()).toEqual(
@@ -86,7 +86,7 @@ describe("integrations", function () {
 
 	it("combined mapped: concat files with final combined sourcemap file", function (done) {
 		function assert(results) {
-			var data = results[1];
+			const data = results[1];
 			// TODO: This might be flakey since it grabs index 1 from results
 			expect(/index\.js$/.test(data.path)).toEqual(true);
 			expect(
@@ -116,7 +116,7 @@ describe("integrations", function () {
 
 	it("combined: inline concatenated file", function (done) {
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(/index\.js$/.test(data.path)).toEqual(true);
 			expect(
 				/\/\/# sourceMappingURL=data:application.*/.test(
@@ -165,7 +165,7 @@ describe("integrations", function () {
 
 	it("combined: mapped preExisting", function (done) {
 		function assert(results) {
-			var data = results[1];
+			const data = results[1];
 			// TODO: This might be flakey since it grabs index 1 from results
 			expect(/index\.js$/.test(data.path)).toEqual(true);
 			expect(
@@ -199,7 +199,7 @@ describe("integrations", function () {
 
 	it("combined: inlined preExisting", function (done) {
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(/index\.js$/.test(data.path)).toEqual(true);
 			expect(
 				/\/\/# sourceMappingURL=data:application.*/.test(
@@ -232,7 +232,7 @@ describe("integrations", function () {
 
 	it("combined: mapped preExisting with two tasks", function (done) {
 		function assert(results) {
-			var data = results[1];
+			const data = results[1];
 			// TODO: This might be flakey since it grabs index 1 from results
 			expect(/index\.js$/.test(data.path)).toEqual(true);
 			expect(
@@ -284,11 +284,11 @@ describe("integrations", function () {
 	// - thanks @twiggy https://github.com/gulp-sourcemaps/gulp-sourcemaps/issues/270#issuecomment-271723208
 	it("sources: is valid with concat", function (done) {
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			// TODO: This might be flakey since it grabs index 0 from results
 			expect(/.*\.map/.test(data.path)).toEqual(true);
 
-			var contents = JSON.parse(data.contents.toString());
+			const contents = JSON.parse(data.contents.toString());
 			contents.sources.forEach(function (s, i) {
 				expect(s).toEqual("test" + (i + 3) + ".js");
 			});
@@ -311,11 +311,11 @@ describe("integrations", function () {
 	// - thanks @twiggy https://github.com/gulp-sourcemaps/gulp-sourcemaps/issues/270#issuecomment-271723208
 	it("sources: mapSourcesAbsolute: is valid with concat", function (done) {
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			// TODO: This might be flakey since it grabs index 0 from results
 			expect(/.*\.map/.test(data.path)).toEqual(true);
 
-			var contents = JSON.parse(data.contents.toString());
+			const contents = JSON.parse(data.contents.toString());
 			contents.sources.forEach(function (s, i) {
 				expect(s).toEqual("/test/assets/test" + (i + 3) + ".js");
 			});

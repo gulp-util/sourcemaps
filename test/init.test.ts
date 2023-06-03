@@ -1,33 +1,33 @@
 "use strict";
 
-var expect = require("expect");
+const expect = require("expect");
 // BEGIN PRE-HOOK of debug
-var debug = require("debug-fabulous")();
-var miss = require("mississippi");
+const debug = require("debug-fabulous")();
+const miss = require("mississippi");
 
-var from = miss.from;
-var pipe = miss.pipe;
-var concat = miss.concat;
+const from = miss.from;
+const pipe = miss.pipe;
+const concat = miss.concat;
 
-var ignoreLogTests = process.argv.indexOf("--ignore-log-tests") !== -1;
+const ignoreLogTests = process.argv.indexOf("--ignore-log-tests") !== -1;
 
 if (!ignoreLogTests) {
 	debug.save("gulp-sourcemaps:*");
 	debug.enable(debug.load());
 }
 // END PRE-HOOK of debug (must be loaded before our main module (sourcemaps))
-var sourcemaps = require("..");
-var File = require("vinyl");
-var hookStd = require("hook-std");
-var helpers = require("./test-helpers");
+const sourcemaps = require("..");
+const File = require("vinyl");
+const hookStd = require("hook-std");
+const helpers = require("./test-helpers");
 
 describe("init", function () {
 	it("should pass through when file is null", function (done) {
 		// end inner conflict
-		var file = new File();
+		const file = new File();
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data).toExist();
 			expect(data instanceof File).toEqual(true);
 			expect(data.sourceMap).toNotExist();
@@ -38,7 +38,7 @@ describe("init", function () {
 	});
 
 	it("should emit an error if file content is a stream", function (done) {
-		var file = helpers.makeStreamFile();
+		const file = helpers.makeStreamFile();
 
 		function assert(err) {
 			expect(err).toExist();
@@ -50,10 +50,10 @@ describe("init", function () {
 	});
 
 	it("should add an empty source map", function (done) {
-		var file = helpers.makeFile();
+		const file = helpers.makeFile();
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data).toExist();
 			expect(data instanceof File).toEqual(true);
 			expect(data.sourceMap).toExist();
@@ -70,10 +70,10 @@ describe("init", function () {
 	});
 
 	it("should add a valid source map if wished", function (done) {
-		var file = helpers.makeFile();
+		const file = helpers.makeFile();
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data).toExist();
 			expect(data instanceof File).toEqual(true);
 			expect(data.sourceMap).toExist();
@@ -103,10 +103,10 @@ describe("init", function () {
 	});
 
 	it("should add a valid source map for css if wished", function (done) {
-		var file = helpers.makeFileCSS();
+		const file = helpers.makeFileCSS();
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data).toExist();
 			expect(data instanceof File).toEqual(true);
 			expect(data.sourceMap).toExist();
@@ -130,10 +130,10 @@ describe("init", function () {
 	});
 
 	it("init: can replace `identityMap` option with sourcemap.identityMap stream (js file)", function (done) {
-		var file = helpers.makeFile();
+		const file = helpers.makeFile();
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data).toExist();
 			expect(data instanceof File).toEqual(true);
 			expect(data.sourceMap).toExist();
@@ -164,10 +164,10 @@ describe("init", function () {
 	});
 
 	it("can replace `identityMap` option with sourcemap.identityMap stream (css file)", function (done) {
-		var file = helpers.makeFileCSS();
+		const file = helpers.makeFileCSS();
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data).toExist();
 			expect(data instanceof File).toEqual(true);
 			expect(data.sourceMap).toExist();
@@ -194,10 +194,10 @@ describe("init", function () {
 	});
 
 	it("should import an existing inline source map", function (done) {
-		var file = helpers.makeFileWithInlineSourceMap();
+		const file = helpers.makeFileWithInlineSourceMap();
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data).toExist();
 			expect(data instanceof File).toEqual(true);
 			expect(data.sourceMap).toExist();
@@ -226,13 +226,13 @@ describe("init", function () {
 	});
 
 	it("should load external source map file referenced in comment with the //# syntax", function (done) {
-		var file = helpers.makeFile();
+		const file = helpers.makeFile();
 		file.contents = new Buffer(
 			helpers.sourceContent + "\n//# sourceMappingURL=helloworld2.js.map"
 		);
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(String(data.sourceMap.version)).toEqual("3");
 			expect(data.sourceMap.sources).toEqual(["helloworld2.js"]);
@@ -253,13 +253,13 @@ describe("init", function () {
 	});
 
 	it("css: should load external source map file referenced in comment with the //*# syntax", function (done) {
-		var file = helpers.makeFileCSS();
+		const file = helpers.makeFileCSS();
 		file.contents = new Buffer(
 			helpers.sourceContentCSS + "\n/*# sourceMappingURL=test.css.map */"
 		);
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(String(data.sourceMap.version)).toEqual("3");
 			expect(data.sourceMap.sources).toEqual(["../test.css"]);
@@ -280,13 +280,13 @@ describe("init", function () {
 	});
 
 	it("should remove source map comment with the //# syntax", function (done) {
-		var file = helpers.makeFile();
+		const file = helpers.makeFile();
 		file.contents = new Buffer(
 			helpers.sourceContent + "\n//# sourceMappingURL=helloworld2.js.map"
 		);
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(/sourceMappingURL/.test(data.contents.toString())).toEqual(
 				false
 			);
@@ -303,14 +303,14 @@ describe("init", function () {
 	});
 
 	it("init: css: should remove source map comment with the //*# syntax", function (done) {
-		var file = helpers.makeFileCSS();
+		const file = helpers.makeFileCSS();
 		file.contents = new Buffer(
 			helpers.sourceContentCSS + "\n/*# sourceMappingURL=test.css.map */"
 		);
 
 		function assert(results) {
-			var data = results[0];
-			var actualContents = data.contents.toString();
+			const data = results[0];
+			const actualContents = data.contents.toString();
 			expect(/sourceMappingURL/.test(actualContents)).toEqual(false);
 		}
 
@@ -325,14 +325,14 @@ describe("init", function () {
 	});
 
 	it("should load external source map file referenced in comment with the /*# */ syntax", function (done) {
-		var file = helpers.makeFile();
+		const file = helpers.makeFile();
 		file.contents = new Buffer(
 			helpers.sourceContent +
 				"\n/*# sourceMappingURL=helloworld2.js.map */"
 		);
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(String(data.sourceMap.version)).toEqual("3");
 			expect(data.sourceMap.sources).toEqual(["helloworld2.js"]);
@@ -353,14 +353,14 @@ describe("init", function () {
 	});
 
 	it("should remove source map comment with the //# syntax", function (done) {
-		var file = helpers.makeFile();
+		const file = helpers.makeFile();
 		file.contents = new Buffer(
 			helpers.sourceContent +
 				"\n/*# sourceMappingURL=helloworld2.js.map */"
 		);
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(/sourceMappingURL/.test(data.contents.toString())).toEqual(
 				false
 			);
@@ -377,11 +377,11 @@ describe("init", function () {
 	});
 
 	it("should load external source map if no source mapping comment", function (done) {
-		var file = helpers.makeFile();
+		const file = helpers.makeFile();
 		file.path = file.path.replace("helloworld.js", "helloworld2.js");
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(String(data.sourceMap.version)).toEqual("3");
 			expect(data.sourceMap.sources).toEqual(["helloworld2.js"]);
@@ -402,13 +402,13 @@ describe("init", function () {
 	});
 
 	it("should load external source map and add sourceContent if missing", function (done) {
-		var file = helpers.makeFile();
+		const file = helpers.makeFile();
 		file.contents = new Buffer(
 			helpers.sourceContent + "\n//# sourceMappingURL=helloworld3.js.map"
 		);
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(String(data.sourceMap.version)).toEqual("3");
 			expect(data.sourceMap.sources).toEqual([
@@ -433,13 +433,13 @@ describe("init", function () {
 	});
 
 	it("should not throw when source file for sourceContent not found", function (done) {
-		var file = helpers.makeFile();
+		const file = helpers.makeFile();
 		file.contents = new Buffer(
 			helpers.sourceContent + "\n//# sourceMappingURL=helloworld4.js.map"
 		);
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(String(data.sourceMap.version)).toEqual("3");
 			expect(data.sourceMap.sources).toEqual([
@@ -466,11 +466,11 @@ describe("init", function () {
 	// vinyl 2.X breaks this spec, not exactly sure why but it is due to the following commit
 	// https://github.com/gulpjs/vinyl/commit/ece4abf212c83aa3e2613c57a4a0fe96171d5755
 	it("should use unix style paths in sourcemap", function (done) {
-		var file = helpers.makeFile();
+		const file = helpers.makeFile();
 		file.base = file.cwd;
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data.sourceMap.file).toEqual("assets/helloworld.js");
 			expect(data.sourceMap.sources).toEqual(["assets/helloworld.js"]);
 		}
@@ -479,13 +479,13 @@ describe("init", function () {
 	});
 
 	it("should use sourceRoot when resolving path to sources", function (done) {
-		var file = helpers.makeFile();
+		const file = helpers.makeFile();
 		file.contents = new Buffer(
 			helpers.sourceContent + "\n//# sourceMappingURL=helloworld5.js.map"
 		);
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(String(data.sourceMap.version)).toEqual("3");
 			expect(data.sourceMap.sources).toEqual([
@@ -511,13 +511,13 @@ describe("init", function () {
 	});
 
 	it("should not load source content if the path is a url", function (done) {
-		var file = helpers.makeFile();
+		const file = helpers.makeFile();
 		file.contents = new Buffer(
 			helpers.sourceContent + "\n//# sourceMappingURL=helloworld6.js.map"
 		);
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data.sourceMap).toExist();
 			expect(String(data.sourceMap.version)).toEqual("3");
 			expect(data.sourceMap.sources).toEqual([
@@ -539,7 +539,7 @@ describe("init", function () {
 	});
 
 	it("should pass through when file already has a source map", function (done) {
-		var sourceMap = {
+		const sourceMap = {
 			version: 3,
 			names: [],
 			mappings: "",
@@ -547,11 +547,11 @@ describe("init", function () {
 			sourcesContent: ["testContent"],
 		};
 
-		var file = helpers.makeFile();
+		const file = helpers.makeFile();
 		file.sourceMap = sourceMap;
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data).toExist();
 			expect(data instanceof File).toEqual(true);
 			expect(data.sourceMap).toBe(sourceMap);
@@ -569,10 +569,10 @@ describe("init", function () {
 	});
 
 	it("handle null contents", function (done) {
-		var file = helpers.makeNullFile();
+		const file = helpers.makeNullFile();
 
 		function assert(results) {
-			var data = results[0];
+			const data = results[0];
 			expect(data).toExist();
 			expect(data instanceof File).toEqual(true);
 			expect(data.sourceMap).toExist();
@@ -596,21 +596,21 @@ describe("init", function () {
 	if (!ignoreLogTests) {
 		// should always be last as disabling a debug namespace does not work
 		it("should output an error message if debug option is set and sourceContent is missing", function (done) {
-			var file = helpers.makeFile();
+			const file = helpers.makeFile();
 			file.contents = new Buffer(
 				helpers.sourceContent +
 					"\n//# sourceMappingURL=helloworld4.js.map"
 			);
 
-			var history = [];
+			const history = [];
 
-			var unhook = hookStd.stderr(function (s) {
+			const unhook = hookStd.stderr(function (s) {
 				history.push(s);
 			});
 
 			function assert() {
 				unhook();
-				var hasRegex = function (regex) {
+				const hasRegex = function (regex) {
 					return function (s) {
 						return regex.test(s);
 					};
@@ -639,21 +639,21 @@ describe("init", function () {
 		});
 
 		it("should output an error message if debug option is set, loadMaps: true, and source map file not found", function (done) {
-			var file = helpers.makeFile();
+			const file = helpers.makeFile();
 			file.contents = new Buffer(
 				helpers.sourceContent +
 					"\n//# sourceMappingURL=not-existent.js.map"
 			);
 
-			var history = [];
+			const history = [];
 
-			var unhook = hookStd.stderr(function (s) {
+			const unhook = hookStd.stderr(function (s) {
 				history.push(s);
 			});
 
 			function assert() {
 				unhook();
-				var hasRegex = function (regex) {
+				const hasRegex = function (regex) {
 					return function (s) {
 						return regex.test(s);
 					};
