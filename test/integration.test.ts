@@ -24,7 +24,7 @@ const sourceContent = fs
 	.readFileSync(join(__dirname, "assets/helloworld.js"))
 	.toString();
 
-function base64JSON(object) {
+function base64JSON(object: object) {
 	return (
 		"data:application/json;charset=utf8;base64," +
 		Buffer.from(JSON.stringify(object)).toString("base64")
