@@ -2,7 +2,7 @@
 	"name": "sourcemaps",
 	"version": "0.0.1",
 	"license": "GPL-3.0",
-	"title": "",
+	"title": "Gulp Sourcemap",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/gulp-utils/sourcemaps"
