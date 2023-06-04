@@ -2,7 +2,7 @@ import expect from "expect";
 // BEGIN PRE-HOOK of debug
 import _debug from "debug-fabulous";
 import from = require("from2");
-import concat = require("concat-stream");
+import { concat } from "./test-helpers";
 import { pipeline as pipe } from "stream";
 
 const debug = _debug();

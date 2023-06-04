@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import File from "vinyl";
-import { Readable as ReadableStream } from "stream";
+import { Readable as ReadableStream, Writable } from "stream";
 
 const sourceContent = fs
 	.readFileSync(path.join(__dirname, "assets/helloworld.js"))
@@ -64,9 +64,34 @@ function makeFileCSS() {
 	});
 }
 
+// https://github.com/gulpjs/glob-stream/blob/d8eace309c58b2097b60c926bd68c98a58451809/test/index.js#L22-L43
+function concat<T>(fn?: (f: T[]) => void, timeout?: number) {
+	const items = <T[]>[];
+	return new Writable({
+		objectMode: true,
+		write: function (chunk, enc, cb) {
+			if (typeof enc === "function") {
+				cb = enc;
+			}
+			setTimeout(function () {
+				items.push(chunk);
+				cb();
+			}, timeout || 1);
+		},
+		final: function (cb) {
+			if (typeof fn === "function") {
+				fn(items);
+			}
+
+			cb();
+		},
+	});
+}
+
 export {
 	sourceContent,
 	sourceContentCSS,
+	concat,
 	makeFile,
 	makeFileCSS,
 	makeNullFile,
