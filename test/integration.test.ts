@@ -3,7 +3,8 @@ import gulp from "gulp";
 import gulpLoad from "gulp-load-plugins";
 import sourcemaps = require("..");
 import _debug from "debug-fabulous";
-import { pipe, concat } from "mississippi";
+import { concat } from "mississippi";
+import { pipeline as pipe } from "stream";
 import { join } from "path";
 import rimraf from "rimraf";
 import fs from "fs";
@@ -253,7 +254,7 @@ describe("integrations", function () {
 				sourcemaps.write("."),
 				gulp.dest("tmp/combined_map_preExisting_two_task/tmp"),
 			],
-			function (err) {
+			function (err: Error) {
 				if (err) {
 					done(err);
 					return;

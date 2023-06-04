@@ -6,7 +6,8 @@ import path from "path";
 import fs from "fs";
 import { stderr as hookStderr } from "hook-std";
 import _debug from "debug-fabulous";
-import { from, pipe, concat } from "mississippi";
+import { from, concat } from "mississippi";
+import { pipeline as pipe } from "stream";
 
 const debug = _debug();
 
