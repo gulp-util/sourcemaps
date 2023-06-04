@@ -9,9 +9,18 @@ import { join } from "path";
 import rimraf from "rimraf";
 import fs from "fs";
 import type File from "vinyl";
+import type gulpIf from "gulp-if";
+import type IConcat from "gulp-concat";
+import type less from "gulp-less";
+
+interface IGulpPlugins {
+	if: typeof gulpIf;
+	concat: typeof IConcat;
+	less: typeof less;
+}
 
 const debug = _debug();
-const $ = gulpLoad();
+const $ = gulpLoad() as IGulpPlugins;
 
 const ignoreLogTests = process.argv.indexOf("--ignore-log-tests") !== -1;
 
