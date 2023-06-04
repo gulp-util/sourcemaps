@@ -3,7 +3,7 @@ import gulp from "gulp";
 import gulpLoad from "gulp-load-plugins";
 import sourcemaps = require("..");
 import _debug from "debug-fabulous";
-import { concat } from "mississippi";
+import concat = require("concat-stream");
 import { pipeline as pipe } from "stream";
 import { join } from "path";
 import rimraf from "rimraf";

@@ -3,10 +3,12 @@ lockfileVersion: 5.4
 specifiers:
   '@gulp-sourcemaps/identity-map': ^2.0.1
   '@gulp-sourcemaps/map-sources': ^1.0.0
+  '@types/concat-stream': ^1.5.0
   '@types/convert-source-map': ^1.0.0
   '@types/css-tree': ^2.3.1
   '@types/detect-newline': ^2.0.0
   '@types/expect': ^1.20.2
+  '@types/from2': ^2.1.0
   '@types/graceful-fs': ^4.0.0
   '@types/gulp': ^4.0.0
   '@types/gulp-load-plugins': ^0.0.34
@@ -19,12 +21,14 @@ specifiers:
   '@typescript-eslint/parser': ^5.59.8
   acorn: ^6.4.1
   bootstrap: ^3.4.1
+  concat-stream: ^1.5.0
   convert-source-map: ^1.0.0
   css-tree: ^2.2.1
   debug-fabulous: ^1.0.0
   detect-newline: ^2.0.0
   eslint: ^8.41.0
   expect: ^1.20.2
+  from2: ^2.1.0
   graceful-fs: ^4.0.0
   gulp: ^4.0.0
   gulp-concat: ^2.6.1
@@ -34,7 +38,6 @@ specifiers:
   hook-std: ~2.0.0
   istanbul: ^0.4.3
   istanbul-coveralls: ^1.0.3
-  mississippi: 1.X
   mocha: ^10.2.0
   rimraf: ^2.6.3
   source-map: ^0.7.0
@@ -68,7 +71,9 @@ optionalDependencies:
   ts-node: 10.9.1_wanalbxtsppgcqemtlzr6bzfo4
 
 devDependencies:
+  '@types/concat-stream': 1.6.1
   '@types/expect': 1.20.4
+  '@types/from2': 2.3.2
   '@types/gulp': 4.0.11
   '@types/gulp-load-plugins': 0.0.34
   '@types/mocha': 10.0.1
@@ -76,8 +81,10 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.59.8_hnhvdstanz2zc7wdbtnhvs2o7u
   '@typescript-eslint/parser': 5.59.8_opaykosi7ysrbskpnffskmbrki
   bootstrap: 3.4.1
+  concat-stream: 1.6.2
   eslint: 8.41.0
   expect: 1.20.2
+  from2: 2.3.0
   gulp: 4.0.2
   gulp-concat: 2.6.1
   gulp-if: 2.0.2
@@ -86,7 +93,6 @@ devDependencies:
   hook-std: 2.0.0
   istanbul: 0.4.5
   istanbul-coveralls: 1.0.3
-  mississippi: 1.3.1
   mocha: 10.2.0
   rimraf: 2.7.1
   typescript: 5.0.4
@@ -181,10 +187,12 @@ packages:
   /@jridgewell/resolve-uri/3.1.1:
     resolution: {integrity: sha512-dSYZh7HhCDtCKm4QakX0xFpsRDqjjtZf/kjI/v3T3Nwt5r8/qz/M19F9ySyOqU94SXBmeG9ttTul+YnR4LOxFA==}
     engines: {node: '>=6.0.0'}
+    dev: false
     optional: true
 
   /@jridgewell/sourcemap-codec/1.4.15:
     resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
+    dev: false
     optional: true
 
   /@jridgewell/trace-mapping/0.3.9:
@@ -192,6 +200,7 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
+    dev: false
     optional: true
 
   /@nodelib/fs.scandir/2.1.5:
@@ -235,6 +244,12 @@ packages:
     dev: false
     optional: true
 
+  /@types/concat-stream/1.6.1:
+    resolution: {integrity: sha512-eHE4cQPoj6ngxBZMvVf6Hw7Mh4jMW4U9lpGmS5GBPB9RYxlFg+CHaVN7ErNY4W9XfLIEn20b4VDYaIrbq0q4uA==}
+    dependencies:
+      '@types/node': 20.2.5
+    dev: true
+
   /@types/convert-source-map/1.5.2:
     resolution: {integrity: sha512-tHs++ZeXer40kCF2JpE51Hg7t4HPa18B1b1Dzy96S0eCw8QKECNMYMfwa1edK/x8yCN0r4e6ewvLcc5CsVGkdg==}
     dev: false
@@ -249,6 +264,12 @@ packages:
 
   /@types/expect/1.20.4:
     resolution: {integrity: sha512-Q5Vn3yjTDyCMV50TB6VRIbQNxSE4OmZR86VSbGaNpfUolm0iePBB4KdEEHmxoY5sT2+2DIvXW0rvMDP2nHZ4Mg==}
+
+  /@types/from2/2.3.2:
+    resolution: {integrity: sha512-s1pdctxW2+CA4FOxxTBRxC3RKQL9Br1a2s2LngP4jh1BI84JBL3mDXj87EwcckN9z/IXp8o3ySmvZveGEAAwqw==}
+    dependencies:
+      '@types/node': 20.2.5
+    dev: true
 
   /@types/glob-stream/8.0.0:
     resolution: {integrity: sha512-fxTWwdQmX9LWSHD7ZLlv3BHR992mKcVcDnT/2v+l/QZZo7TfDdyasqlSYVzOnMGWhRbrWeWkbj/mgezFjKynhw==}
@@ -1275,10 +1296,6 @@ packages:
       mdn-data: 2.0.30
       source-map-js: 1.0.2
     dev: false
-
-  /cyclist/1.0.2:
-    resolution: {integrity: sha512-0sVXIohTfLqVIW3kb/0n6IiWF3Ifj5nm2XaSrLq2DI6fKIGa2fYAZdk917rUneaeLVpYfFcyXE2ft0fe3remsA==}
-    dev: true
 
   /d/1.0.1:
     resolution: {integrity: sha512-m62ShEObQ39CfralilEQRjH6oAMtNCV1xJyEx5LpRYUVN+EviphDgUc/F3hnYbADmkiNs67Y+3ylmlG7Lnu+FA==}
@@ -3508,21 +3525,6 @@ packages:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
     dev: true
 
-  /mississippi/1.3.1:
-    resolution: {integrity: sha512-/6rB8YXFbAtsUVRphIRQqB0+9c7VaPHCjVtvto+JqwVxgz8Zz+I+f68/JgQ+Pb4VlZb2svA9OtdXnHHsZz7ltg==}
-    dependencies:
-      concat-stream: 1.6.2
-      duplexify: 3.7.1
-      end-of-stream: 1.4.4
-      flush-write-stream: 1.1.1
-      from2: 2.3.0
-      parallel-transform: 1.2.0
-      pump: 1.0.3
-      pumpify: 1.5.1
-      stream-each: 1.2.3
-      through2: 2.0.5
-    dev: true
-
   /mixin-deep/1.3.2:
     resolution: {integrity: sha512-WRoDn//mXBiJ1H40rqa3vH0toePwSsGb45iInWlTySa+Uu4k3tYUSxa2v1KqAiLtvlrSzaExqS1gtk96A9zvEA==}
     engines: {node: '>=0.10.0'}
@@ -3818,14 +3820,6 @@ packages:
       p-limit: 3.1.0
     dev: true
 
-  /parallel-transform/1.2.0:
-    resolution: {integrity: sha512-P2vSmIu38uIlvdcU7fDkyrxj33gTUy/ABO5ZUbGowxNCopBq/OoD42bP4UmMrJoPyk4Uqf0mu3mtWBhHCZD8yg==}
-    dependencies:
-      cyclist: 1.0.2
-      inherits: 2.0.4
-      readable-stream: 2.3.8
-    dev: true
-
   /parent-module/1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
     engines: {node: '>=6'}
@@ -4005,13 +3999,6 @@ packages:
     resolution: {integrity: sha512-yPw4Sng1gWghHQWj0B3ZggWUm4qVbPwPFcRG8KyxiU7J2OHFSoEHKS+EZ3fv5l1t9CyCiop6l/ZYeWbrgoQejw==}
     dev: true
     optional: true
-
-  /pump/1.0.3:
-    resolution: {integrity: sha512-8k0JupWme55+9tCVE+FS5ULT3K6AbgqrGa58lTT49RpyfwwcGedHqaC5LlQNdEAumn/wFsu6aPwkuPMioy8kqw==}
-    dependencies:
-      end-of-stream: 1.4.4
-      once: 1.4.0
-    dev: true
 
   /pump/2.0.1:
     resolution: {integrity: sha512-ruPMNRkN3MHP1cWJc9OWr+T/xDP0jhXYCLfJcBuX54hhfIBnaQmAUMfDcG4DM5UMWByBbJY69QSphm3jtDKIkA==}
@@ -4581,13 +4568,6 @@ packages:
       internal-slot: 1.0.5
     dev: true
 
-  /stream-each/1.2.3:
-    resolution: {integrity: sha512-vlMC2f8I2u/bZGqkdfLQW/13Zihpej/7PmSiMQsbYddxuTsJp8vRe2x2FvVExZg7FaOds43ROAuFJwPR4MTZLw==}
-    dependencies:
-      end-of-stream: 1.4.4
-      stream-shift: 1.0.1
-    dev: true
-
   /stream-exhaust/1.0.2:
     resolution: {integrity: sha512-b/qaq/GlBK5xaq1yrK9/zFcyRSTNxmcZwFLGSTG0mXgZl/4Z6GgiyYOXOvY7N3eEvFRAG1bkDRz5EPGSvPYQlw==}
     dev: true
@@ -4836,6 +4816,7 @@ packages:
   /ts-node/10.9.1_wanalbxtsppgcqemtlzr6bzfo4:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
+    requiresBuild: true
     peerDependencies:
       '@swc/core': '>=1.2.50'
       '@swc/wasm': '>=1.2.50'
