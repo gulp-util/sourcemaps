@@ -13,6 +13,7 @@ describe("utils", function () {
 
 	it("exceptionToString: returns empty string if message is not present", function (done) {
 		const exception = { foo: "bar" };
+		// @ts-expect-error it needs to fail since the message is not pressent
 		const result = utils.exceptionToString(exception);
 
 		expect(result).toEqual("");
