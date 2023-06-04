@@ -350,7 +350,7 @@ describe("init", function () {
 		);
 	});
 
-	it("should remove source map comment with the //# syntax", function (done) {
+	it("should remove source map comment with the /* # */ syntax", function (done) {
 		const file = helpers.makeFile();
 		file.contents = Buffer.from(
 			helpers.sourceContent +
