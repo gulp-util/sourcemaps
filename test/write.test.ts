@@ -19,7 +19,7 @@ if (!ignoreLogTests) {
 	debug.enable(debug.load());
 }
 
-import utils = require("../lib/utils");
+import { _utils as utils } from "..";
 import convert from "convert-source-map";
 
 const sourceContent = fs

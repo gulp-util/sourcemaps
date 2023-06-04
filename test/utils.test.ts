@@ -1,5 +1,5 @@
 import expect from "expect";
-import utils = require("../lib/utils");
+import { _utils as utils } from "..";
 
 describe("utils", function () {
 	it("exceptionToString: takes message if present", function (done) {
