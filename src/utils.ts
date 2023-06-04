@@ -87,7 +87,7 @@ function getInlinePreExisting(fileContent: string) {
 	}
 }
 
-function exceptionToString(exception: Error) {
+function exceptionToString(exception: { message: string }) {
 	return exception.message || "";
 }
 
