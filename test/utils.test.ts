@@ -1,4 +1,5 @@
 import expect from "expect";
+import File from "vinyl";
 import { _utils as utils } from "..";
 
 describe("utils", function () {
@@ -19,11 +20,11 @@ describe("utils", function () {
 	});
 
 	it("getCommentFormatter: gets a commenter with invalid extension", function (done) {
-		const commenter = utils.getCommentFormatter({
-			relative: "some.junk",
-			contents: "var a = 'hello';",
-			sourceMap: { preExistingComment: true },
-		});
+		const file = new File();
+		file.path = "some.junk";
+		file.contents = Buffer.from("var a = 'hello';");
+		file.sourceMap = { preExistingComment: true };
+		const commenter = utils.getCommentFormatter(file);
 
 		expect(commenter).toExist();
 		done();
