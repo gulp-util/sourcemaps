@@ -35,9 +35,7 @@ function init(options?: InitOptions) {
 		if (options === undefined) {
 			options = {};
 		}
-		debug(function () {
-			return options;
-		});
+		debug(() => options);
 
 		let fileContent = file.contents.toString();
 		let sourceMap, preExistingComment;
@@ -54,9 +52,7 @@ function init(options?: InitOptions) {
 			debug(function () {
 				return "**identityMap option is deprecated, update to use sourcemap.identityMap stream**";
 			});
-			debug(function () {
-				return "identityMap";
-			});
+			debug(() => "identityMap");
 			const fileType = path.extname(file.path);
 			const source = unixStylePath(file.relative);
 			const generator = new SourceMapGenerator({ file: source });
@@ -85,9 +81,7 @@ function init(options?: InitOptions) {
 			} else if (fileType === ".css") {
 				debug("css");
 				const ast = css.parse(fileContent, { positions: true });
-				debug(function () {
-					return ast;
-				});
+				debug(() => ast);
 				const registerTokens = function (ast: css.CssNode) {
 					if (!["Rule", "Declaration"].includes(ast.type)) {
 						return;

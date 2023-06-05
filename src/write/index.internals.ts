@@ -21,20 +21,14 @@ export default function internalsInit(destPath: string, options: WriteOptions) {
 
 		const sourceMap = file.sourceMap;
 		if (typeof options.sourceRoot === "function") {
-			debug(function () {
-				return "is function";
-			});
+			debug(() => "is function");
 			sourceMap.sourceRoot = options.sourceRoot(file);
 		} else {
-			debug(function () {
-				return "from options";
-			});
+			debug(() => "from options");
 			sourceMap.sourceRoot = options.sourceRoot;
 		}
 		if (sourceMap.sourceRoot === null) {
-			debug(function () {
-				return "undefined";
-			});
+			debug(() => "undefined");
 			sourceMap.sourceRoot = undefined;
 		}
 	}
@@ -47,9 +41,7 @@ export default function internalsInit(destPath: string, options: WriteOptions) {
 			debug(function () {
 				return "**Option is deprecated, update to use sourcemap.mapSources stream**";
 			});
-			debug(function () {
-				return "function";
-			});
+			debug(() => "function");
 
 			file.sourceMap.sources = file.sourceMap.sources.map(function (
 				filePath: string
@@ -59,40 +51,26 @@ export default function internalsInit(destPath: string, options: WriteOptions) {
 			return;
 		}
 
-		debug(function () {
-			return "file.path: " + file.path;
-		});
-		debug(function () {
-			return "file.cwd: " + file.cwd;
-		});
-		debug(function () {
-			return "file.base: " + file.base;
-		});
+		debug(() => `file.path: ${file.path}`);
+		debug(() => `file.cwd: ${file.cwd}`);
+		debug(() => `file.base: ${file.base}`);
 
 		file.sourceMap.sources = file.sourceMap.sources.map(function (
 			filePath: string
 		) {
 			// keep the references files like ../node_modules within the sourceRoot
-			debug(function () {
-				return "filePath: " + filePath;
-			});
+			debug(() => `filePath: ${filePath}`);
 
 			if (options.mapSourcesAbsolute === true) {
-				debug(function () {
-					return "mapSourcesAbsolute";
-				});
+				debug(() => "mapSourcesAbsolute");
 
 				if (!file.dirname) {
-					debug(function () {
-						return "!file.dirname";
-					});
+					debug(() => "!file.dirname");
 					filePath = path
 						.join(file.base, filePath)
 						.replace(file.cwd, "");
 				} else {
-					debug(function () {
-						return "file.dirname: " + file.dirname;
-					});
+					debug(() => `file.dirname: ${file.dirname}`);
 					filePath = path
 						.resolve(file.dirname, filePath)
 						.replace(file.cwd, "");
@@ -118,9 +96,7 @@ export default function internalsInit(destPath: string, options: WriteOptions) {
 					);
 					try {
 						debug(
-							'No source content for "' +
-								sourceMap.sources[i] +
-								'". Loading from file.'
+							`No source content for "${sourceMap.sources[i]}". Loading from file.`
 						);
 						sourceMap.sourcesContent[i] = stripBom(
 							fs.readFileSync(sourcePath, "utf8")
@@ -148,10 +124,7 @@ export default function internalsInit(destPath: string, options: WriteOptions) {
 				"base64"
 			);
 			comment = commentFormatter(
-				"data:application/json;charset=" +
-					options.charset +
-					";base64," +
-					base64Map
+				`data:application/json;charset=${options.charset};base64,${base64Map}`
 			);
 		} else {
 			let mapFile = path.join(destPath, file.relative) + ".map";
@@ -265,18 +238,14 @@ export default function internalsInit(destPath: string, options: WriteOptions) {
 				sourceMapPathRelative =
 					prefix + path.join("/", sourceMapPathRelative);
 			}
-			debug(function () {
-				return "destPath comment";
-			});
+			debug(() => "destPath comment");
 			comment = commentFormatter(unixStylePath(sourceMapPathRelative));
 
 			if (
 				options.sourceMappingURL &&
 				typeof options.sourceMappingURL === "function"
 			) {
-				debug(function () {
-					return "options.sourceMappingURL comment";
-				});
+				debug(() => "options.sourceMappingURL comment");
 				comment = commentFormatter(options.sourceMappingURL(file));
 			}
 		}

@@ -74,11 +74,7 @@ export default function (
 						// attempt load content from file
 						try {
 							debug(function () {
-								return (
-									'No source content for "' +
-									source +
-									'". Loading from file.'
-								);
+								return `No source content for "${source}". Loading from file.`;
 							});
 							sourceContent = stripBom(
 								fs.readFileSync(absPath, "utf8")
@@ -151,12 +147,7 @@ export default function (
 			);
 		} catch (e) {
 			debug(function () {
-				return (
-					"warn: external source map not found or invalid: " +
-					mapFile +
-					" " +
-					exceptionToString(e)
-				);
+				return `warn: external source map not found or invalid: ${mapFile} ${exceptionToString(e)}`;
 			});
 		}
 	}

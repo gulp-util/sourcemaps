@@ -14,19 +14,11 @@ import type File from "vinyl";
 function write(destPath?: string, options?: WriteOptions) {
 	const debug = _debug.spawn("write");
 
-	debug(function () {
-		return "destPath";
-	});
-	debug(function () {
-		return destPath;
-	});
+	debug(() => "destPath");
+	debug(() => destPath);
 
-	debug(function () {
-		return "original options";
-	});
-	debug(function () {
-		return options;
-	});
+	debug(() => "original options");
+	debug(() => options);
 
 	if (options === undefined && typeof destPath !== "string") {
 		options = destPath;
@@ -45,12 +37,8 @@ function write(destPath?: string, options?: WriteOptions) {
 		options.charset = "utf8";
 	}
 
-	debug(function () {
-		return "derrived options";
-	});
-	debug(function () {
-		return options;
-	});
+	debug(() => "derrived options");
+	debug(() => options);
 
 	const internals = internalsInit(destPath, options);
 

@@ -64,14 +64,10 @@ function getCommentFormatter(file: File): Formatter {
 
 	const commentFormatter = resolveFormatter(extension);
 
-	debug(function () {
-		return "commentFormatter " + commentFormatter.name;
-	});
+	debug(() => `commentFormatter ${commentFormatter.name}`);
 	if (file.sourceMap.preExistingComment) {
 		debug(function () {
-			return (
-				"preExistingComment commentFormatter " + commentFormatter.name
-			);
+			return `preExistingComment commentFormatter ${commentFormatter.name}`;
 		});
 		return commentFormatter.bind(undefined, "", newline);
 	}
@@ -80,9 +76,7 @@ function getCommentFormatter(file: File): Formatter {
 
 function getInlinePreExisting(fileContent: string) {
 	if (sourceMapUrlRegEx().test(fileContent)) {
-		debug(function () {
-			return "has preExisting";
-		});
+		debug(() => "has preExisting");
 		return fileContent.match(sourceMapUrlRegEx())[0];
 	}
 }
