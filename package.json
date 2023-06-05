@@ -62,11 +62,9 @@
 		"hook-std": "~2.0.0",
 		"mocha": "^10.2.0",
 		"rimraf": "^2.6.3",
+		"ts-node": "^10.9.1",
 		"typescript": "^5.0.4",
 		"vinyl": "^2.2.0"
-	},
-	"optionalDependencies": {
-		"ts-node": "^10.9.1"
 	},
 	"scripts": {
 		"lint": "eslint .",

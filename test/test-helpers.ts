@@ -3,7 +3,7 @@ import path from "path";
 import File from "vinyl";
 import { Readable as ReadableStream, Writable } from "stream";
 
-const DEBUG_NAME = "@gulp-utils/sourcemaps";
+const DEBUG_NAME = "@gulp-util/sourcemaps";
 
 const sourceContent = fs
 	.readFileSync(path.join(__dirname, "assets/helloworld.js"))
