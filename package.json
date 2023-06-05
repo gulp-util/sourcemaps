@@ -73,7 +73,9 @@
 		"build:source": "tsc || true",
 		"build:test": "tsc -p ./test || true",
 		"pretest": "pnpm run /build:.*/",
-		"test": "mocha"
+		"test": "mocha",
+		"test:ts-node": "mocha -r ts-node/register",
+		"test:transpile": "mocha -r ts-node/register/transpile-only"
 	},
 	"files": [
 		"lib",
