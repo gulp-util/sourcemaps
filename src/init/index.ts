@@ -61,8 +61,7 @@ function init(options?: InitOptions) {
 				const tokenizer = acorn.tokenizer(fileContent, {
 					locations: true,
 				});
-				while (true) {
-					const token = tokenizer.getToken();
+				for (const token of tokenizer) {
 					if (token.type.label === "eof") {
 						break;
 					}
