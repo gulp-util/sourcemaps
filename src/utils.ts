@@ -7,6 +7,7 @@ function unixStylePath(filePath: string) {
 	return filePath.split(path.sep).join("/");
 }
 
+// eslint-disable-next-line
 const PLUGIN_NAME = require("../package.json").name;
 
 const urlRegex = /^(https?|webpack(-[^:]+)?):\/\//;
