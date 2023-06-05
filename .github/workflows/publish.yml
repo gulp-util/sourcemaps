@@ -1,0 +1,32 @@
+name: Publishing
+
+on:
+  push:
+    tags:
+      - "**"
+
+jobs:
+  test:
+    uses: gulp-util/sourcemaps/.github/workflows/test.yml@main
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build package
+        run: pnpm build
+      - name: Deploy package
+        run: pnpm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
