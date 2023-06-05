@@ -3,6 +3,8 @@ import path from "path";
 import File from "vinyl";
 import { Readable as ReadableStream, Writable } from "stream";
 
+const DEBUG_NAME = "@gulp-utils/sourcemaps";
+
 const sourceContent = fs
 	.readFileSync(path.join(__dirname, "assets/helloworld.js"))
 	.toString();
@@ -89,6 +91,7 @@ function concat<T>(fn?: (f: T[]) => void, timeout?: number) {
 }
 
 export {
+	DEBUG_NAME,
 	sourceContent,
 	sourceContentCSS,
 	concat,

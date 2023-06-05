@@ -8,7 +8,7 @@ import { stderr as hookStderr } from "hook-std";
 // @ts-expect-error debug-fabulous doesn't have type definitions
 import _debug from "debug-fabulous";
 import from = require("from2");
-import { concat } from "./test-helpers";
+import { DEBUG_NAME, concat } from "./test-helpers";
 import { pipeline as pipe } from "stream";
 
 const debug = _debug();
@@ -16,7 +16,7 @@ const debug = _debug();
 const ignoreLogTests = process.argv.indexOf("--ignore-log-tests") !== -1;
 
 if (!ignoreLogTests) {
-	debug.save("sourcemaps:*");
+	debug.save(`${DEBUG_NAME}:*`);
 	debug.enable(debug.load());
 }
 

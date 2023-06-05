@@ -4,7 +4,7 @@ import gulpLoad from "gulp-load-plugins";
 import sourcemaps = require("..");
 // @ts-expect-error debug-fabulous doesn't have type definitions
 import _debug from "debug-fabulous";
-import { concat } from "./test-helpers";
+import { DEBUG_NAME, concat } from "./test-helpers";
 import { pipeline as pipe } from "stream";
 import { join } from "path";
 import rimraf from "rimraf";
@@ -26,7 +26,7 @@ const $ = gulpLoad() as IGulpPlugins;
 const ignoreLogTests = process.argv.indexOf("--ignore-log-tests") !== -1;
 
 if (!ignoreLogTests) {
-	debug.save("sourcemaps:*");
+	debug.save(`${DEBUG_NAME}:*`);
 	debug.enable(debug.load());
 }
 

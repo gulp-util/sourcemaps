@@ -5,20 +5,20 @@ import _debug from "debug-fabulous";
 import from = require("from2");
 import { concat } from "./test-helpers";
 import { pipeline as pipe } from "stream";
+import * as helpers from "./test-helpers";
 
 const debug = _debug();
 
 const ignoreLogTests = process.argv.indexOf("--ignore-log-tests") !== -1;
 
 if (!ignoreLogTests) {
-	debug.save("sourcemaps:*");
+	debug.save(`${helpers.DEBUG_NAME}:*`);
 	debug.enable(debug.load());
 }
 // END PRE-HOOK of debug (must be loaded before our main module (sourcemaps))
 import sourcemaps = require("..");
 import File from "vinyl";
 import { stderr as hookStderr } from "hook-std";
-import * as helpers from "./test-helpers";
 
 describe("init", function () {
 	it("should pass through when file is null", function (done) {
