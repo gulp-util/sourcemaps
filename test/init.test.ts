@@ -582,14 +582,7 @@ describe("init", function () {
 			expect(data.sourceMap.mappings).toEqual("");
 		}
 
-		pipe(
-			[
-				from.obj([file]),
-				sourcemaps.init({ addComment: true }),
-				concat(assert),
-			],
-			done
-		);
+		pipe([from.obj([file]), sourcemaps.init(), concat(assert)], done);
 	});
 
 	if (!ignoreLogTests) {

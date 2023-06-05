@@ -227,14 +227,7 @@ describe("write", function () {
 			);
 		}
 
-		pipe(
-			[
-				from.obj([file]),
-				sourcemaps.write(null, { preExistingComment: true }),
-				concat(assert),
-			],
-			done
-		);
+		pipe([from.obj([file]), sourcemaps.write(), concat(assert)], done);
 	});
 
 	it("should write external map files", function (done) {
