@@ -5,6 +5,7 @@ import { Readable as ReadableStream } from "stream";
 import path from "path";
 import fs from "fs";
 import { stderr as hookStderr } from "hook-std";
+// @ts-expect-error debug-fabulous doesn't have type definitions
 import _debug from "debug-fabulous";
 import from = require("from2");
 import { concat } from "./test-helpers";

@@ -1,5 +1,6 @@
 import expect from "expect";
 // BEGIN PRE-HOOK of debug
+// @ts-expect-error debug-fabulous doesn't have type definitions
 import _debug from "debug-fabulous";
 import from = require("from2");
 import { concat } from "./test-helpers";

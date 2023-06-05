@@ -6,6 +6,7 @@ import {
 } from "../utils";
 import rootDebug from "../debug";
 import convert from "convert-source-map";
+// @ts-expect-error strip-bom-string doesn't have type definitions
 import stripBom from "strip-bom-string";
 import fs from "graceful-fs";
 import path from "path";

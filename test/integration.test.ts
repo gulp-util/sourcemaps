@@ -2,6 +2,7 @@ import expect from "expect";
 import gulp from "gulp";
 import gulpLoad from "gulp-load-plugins";
 import sourcemaps = require("..");
+// @ts-expect-error debug-fabulous doesn't have type definitions
 import _debug from "debug-fabulous";
 import { concat } from "./test-helpers";
 import { pipeline as pipe } from "stream";
