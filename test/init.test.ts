@@ -39,7 +39,7 @@ describe("init", function () {
 	it("should emit an error if file content is a stream", function (done) {
 		const file = helpers.makeStreamFile();
 
-		function assert(err) {
+		function assert(err: Error) {
 			expect(err).toExist();
 
 			done();
