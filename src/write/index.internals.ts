@@ -1,7 +1,6 @@
 import { unixStylePath, getCommentFormatter } from "../utils";
 import fs from "graceful-fs";
 import path from "path";
-// @ts-expect-error strip-bom-string doesn't have type definitions
 import stripBom = require("strip-bom-string");
 import _debug from "../debug";
 import { WriteOptions } from "../types";

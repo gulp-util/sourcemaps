@@ -26,6 +26,7 @@
 		"@types/detect-newline": "^2.0.0",
 		"@types/graceful-fs": "^4.0.0",
 		"@types/node": "^20.2.5",
+		"@types/strip-bom-string": "^1.0.0",
 		"@types/through2": "^2.0.0",
 		"@types/vinyl": "^2.0.7",
 		"acorn": "^6.4.1",

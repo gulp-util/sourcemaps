@@ -17,6 +17,7 @@ specifiers:
   '@types/mocha': ^10.0.1
   '@types/node': ^20.2.5
   '@types/rimraf': ^3.0.2
+  '@types/strip-bom-string': ^1.0.0
   '@types/through2': ^2.0.0
   '@types/vinyl': ^2.0.7
   '@typescript-eslint/eslint-plugin': ^5.59.8
@@ -54,6 +55,7 @@ dependencies:
   '@types/detect-newline': 2.1.0
   '@types/graceful-fs': 4.1.6
   '@types/node': 20.2.5
+  '@types/strip-bom-string': 1.0.0
   '@types/through2': 2.0.38
   '@types/vinyl': 2.0.7
   acorn: 6.4.2
@@ -350,6 +352,12 @@ packages:
     dependencies:
       '@types/node': 20.2.5
     dev: true
+
+  /@types/strip-bom-string/1.0.0:
+    resolution: {integrity: sha512-pYJdFHLDJ6PMAnCI9maLxz8F9ExBm8W6Z/UhhNPZ3mrBp7JWDZCArZNHv4px2EflN3BSfP8/vs+GdzPuA4Yf8A==}
+    dependencies:
+      '@types/node': 20.2.5
+    dev: false
 
   /@types/through2/2.0.38:
     resolution: {integrity: sha512-YFu+nHmjxMurkH1BSzA0Z1WrKDAY8jUKPZctNQn7mc+/KKtp2XxnclHFXxdB1m7Iqnzb5aywgP8TMK283LezGQ==}
